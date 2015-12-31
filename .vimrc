@@ -40,7 +40,7 @@ endif
 source ~/.vim/neoplugins.vim
 "=============用户自定义变量=====================
 let g:u_name = 'sky' "user name
-let g:u_email = '963781990@qq.com' "email
+let g:u_email = 'aslijiasheng@gmail.com' "email
 let u_path = '~/.tmp' "vim tmp 目录
 let u_swap_path=u_path.'/vim/swap' "vim swap 交换文件存放目录
 let g:u_undo_path=u_path.'/vim/undo' "vim undo (撤销操作 文件保存路径) 
@@ -232,14 +232,14 @@ nnoremap <Leader>ta :CtrlPBookmarkDirAdd<return> "添加标记书签工作目录
 "使用方式	ctrl+t	新窗口打开查找的文件
 "Nerdtree 目录导航插件配置开始
 " noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
+" let NERDTreeShowBookmarks=1
+" let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+" let NERDTreeChDirMode=0
+" let NERDTreeQuitOnOpen=1
+" let NERDTreeMouseMode=2
+" let NERDTreeShowHidden=1
+" let NERDTreeKeepTreeInNewTab=1
+" let g:nerdtree_tabs_open_on_gui_startup=0
 "Nerdtree 目录导航插件配置结束
 "
 "sessionman 配置开始
@@ -429,8 +429,8 @@ let g:ag_working_path_mode="r"
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 map \h <Plug>(easymotion-linebackward)
-map \j <Plug>(easymotion-j)
-map \k <Plug>(easymotion-k)
+map ,j <Plug>(easymotion-j)
+map ,k <Plug>(easymotion-k)
 map \l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
@@ -535,7 +535,7 @@ endfunction
 command! -bar RangerChooser call RangeChooser()
 nnoremap <leader>r :<C-U>RangerChooser<CR>
 " Put at the very end of your .vimrc file.
-
+"php语法高亮
 function! PhpSyntaxOverride()
   hi! def link phpDocTags  phpDefine
   hi! def link phpDocParam phpType
@@ -570,10 +570,12 @@ let g:vimfiler_marked_file_icon = '✓'
 let g:vimfiler_readonly_file_icon = '✗'
 let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
 let g:vimfiler_expand_jump_to_first_child = 0
-let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
+" let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
+let g:vimfiler_ignore_pattern = '\.pyc\|\~$\|\.swo$\|\.swp$\|\.git\|\.hg\|\.svn\|\.bzr'
 let g:vimfiler_enable_auto_cd = 1
-nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -toggle -no-quit -auto-cd<CR>
-nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -no-quit -find<CR>
+let g:vimfiler_quick_look_command = 'gloobus-preview'
+nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -toggle -no-quit -auto-cd<CR>
+nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -no-quit -find<CR>
 autocmd FileType vimfiler nunmap <buffer> x
 autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
 autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
@@ -581,6 +583,164 @@ autocmd FileType vimfiler nunmap <buffer> l
 autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
 autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
 autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
+autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)<Plug>(vimfiler_edit_file)
 autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
 \ "\<Plug>(vimfiler_expand_tree)",
 \ "\<Plug>(vimfiler_edit_file)")
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ARROW KEYS ARE UNACCEPTABLE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Left> :echo "no!"<cr>
+map <Right> :echo "no!"<cr>
+map <Up> :echo "no!"<cr>
+map <Down> :echo "no!"<cr>
+
+function! SaveIfModified()
+  if &modified
+    :w
+  endif
+endfunction
+
+" key mapping for error navigation
+nnoremap <leader>[ :call SaveIfModified()<CR>  
+nnoremap <leader>] :call SaveIfModified()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Copy paste system clipboard
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>y "*y
+nnoremap <leader>p "*p
+nnoremap <leader>P "*P
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Quit help easily
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! QuitWithQ()
+  if &buftype == 'help'
+    nnoremap <buffer> <silent> q :q<cr>
+  endif
+endfunction
+autocmd FileType help exe QuitWithQ()
+" CTags
+map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+
+"退出不保存
+function! QuitNotSave()
+  if !unite#util#input_yesno('confirm quit but it not save file?')
+    echo 'Canceled.'
+    return
+  else
+    echo 'Doing quit!!!'
+    :qa
+    echo 'Done!!!'
+  endif
+endfunction
+"自动对齐
+function AlignLine(align, ...)
+    if a:align != ''
+        let alignLine = a:align
+        execute 'Align' alignLine 
+    endif
+endfunction
+"快速保存与退出自定义映射快捷键
+nnoremap <leader>w :w<cr>
+nnoremap <leader>wa :wall<cr>
+nnoremap <leader>wq :wqa<cr>
+nnoremap <leader>vs :vs<cr>
+nnoremap <leader>sp :sp<cr>
+nnoremap <leader>bd :bd<cr>
+nnoremap <leader>q :call QuitNotSave()<CR>
+map <leader>al :call AlignLine(input("Enter align: "))<CR>
+"防止neovim在tmux下的错误
+if has('nvim')
+    nmap <BS> <C-W>h
+endif
+"历史纪录
+" noremap <leader>h :Unite file_mru -buffer-name=file_mru<CR>
+"快速移动标签
+function TabQuickMove(tabLabel, ...)
+    let bufferTab = a:tabLabel
+    execute 'buffer' bufferTab
+endfunction
+map <silent>  tt  :call TabQuickMove(input("Enter tabLabel: "))<CR>
+"颜色高亮配置
+let g:landscape_highlight_full_space=1
+highlight Normal gui=none guifg=#dddddd guibg=grey0
+highlight Macro term=none ctermfg=36 gui=none guifg=#00af87
+highlight Debug term=none ctermfg=183 gui=none guifg=violet
+
+highlight TabLine ctermfg=253 ctermbg=241 guifg=#dadada guibg=#606060
+highlight TabLineFill ctermfg=253 ctermbg=241 guifg=#dadada guibg=#606060
+highlight TabLineSel cterm=bold ctermfg=253 guifg=#dadada
+highlight default link VisualNOS Visual
+highlight Error term=none ctermfg=15 ctermbg=124 gui=none guifg=#ffffff guibg=#af0000
+highlight WarningMsg term=none ctermfg=7 ctermbg=0 gui=none guifg=#c0c0c0 guibg=#000000
+highlight DiffAdd term=none cterm=none ctermfg=none ctermbg=22 guifg=fg guibg=#005f00
+highlight DiffChange term=none cterm=none ctermfg=none ctermbg=52 guifg=fg guibg=#5f0000
+highlight DiffDelete term=none cterm=none ctermfg=none ctermbg=88 guifg=fg guibg=#870000
+highlight DiffText term=none cterm=none ctermfg=none ctermbg=160 guifg=fg guibg=#df0000
+highlight DiffFile term=none cterm=none ctermfg=47 ctermbg=none guifg=#00ff5f guibg=bg
+highlight DiffNewFile term=none cterm=none ctermfg=199 ctermbg=none guifg=#ff00af guibg=bg
+highlight default link DiffRemoved DiffDelete
+highlight DiffLine term=none cterm=none ctermfg=129 ctermbg=none guifg=#af00ff guibg=bg
+highlight default link DiffAdded DiffAdd
+highlight default link ErrorMsg Error
+highlight default link FullSpace Error
+if version >= 700
+  if get(g:, 'landscape_cursorline', 1)
+    highlight CursorLine term=none cterm=none ctermbg=235 gui=none guibg=#262626
+    highlight CursorLineNr term=underline cterm=bold ctermfg=148 ctermbg=235 gui=bold guifg=#afdf00 guibg=#262626
+  else
+    highlight clear CursorLine
+    highlight CursorLineNr term=NONE ctermbg=NONE guibg=NONE
+  endif
+  highlight ColorColumn term=none cterm=none ctermbg=239 gui=none guibg=#4e4e4e
+  highlight Cursor term=reverse cterm=reverse gui=reverse guifg=NONE guibg=NONE
+  highlight CursorColumn term=none cterm=none ctermbg=235 gui=none guibg=#262626
+  highlight LineNr term=none ctermfg=58 ctermbg=none guifg=#5f5f00 guibg=bg
+  highlight MatchParen ctermfg=none ctermbg=238 guibg=#4e4e4e
+  highlight Pmenu ctermfg=233 ctermbg=249 gui=none guifg=#121212 guibg=#b2b2b2
+  highlight PmenuSel ctermfg=233 ctermbg=242 gui=none guifg=#121212 guibg=#666666
+  highlight PmenuSbar ctermfg=233 ctermbg=244 gui=none guifg=#121212 guibg=#808080
+  highlight PmenuThumb ctermfg=233 ctermbg=239 gui=none guifg=#121212 guibg=#4e4e4e
+endif
+highlight Search cterm=reverse ctermfg=220 ctermbg=234 gui=reverse guifg=#ffdf00 guibg=#1c1c1c
+highlight IncSearch cterm=reverse ctermfg=136 ctermbg=236 gui=reverse guifg=#af8700 guibg=#303030
+
+highlight default link vimCmplxRepeat Normal
+
+" for vimshell, vimfiler, unite.vim
+highlight default link Command Function
+highlight default link GitCommand Constant
+highlight default link Arguments Type
+highlight default link PdfHtml Function
+highlight default link Archive Special
+highlight default link Image Type
+highlight default link Multimedia SpecialComment
+highlight default link System Comment
+highlight default link Text Constant
+highlight default link Link Constant
+highlight default link Exe Statement
+highlight default link Prompt PreCondit
+highlight default link Icon LineNr
+highlight Time ctermfg=141 ctermbg=none gui=none guifg=#af87ff
+highlight Date ctermfg=140 ctermbg=none gui=none guifg=#af87df
+highlight default link DateToday Special
+highlight default link DateWeek Identifier
+highlight default link DateOld Comment
+highlight default link Path Preproc
+highlight default link Marked StorageClass
+highlight default link Title Identifier
+"bookmarks
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
+nmap <silent>mm <Plug>BookmarkToggle
+nmap <silent>mi <Plug>BookmarkAnnotate
+nmap <silent>ma <Plug>BookmarkShowAll
+nmap <silent>mj <Plug>BookmarkNext
+nmap <silent>mk <Plug>BookmarkPrev
+nmap <silent>mc <Plug>BookmarkClear
+nmap <silent>mx <Plug>BookmarkClearAll
+nmap <silent>mk <Plug>BookmarkMoveUp
+nmap <silent>mj <Plug>BookmarkMoveDown
