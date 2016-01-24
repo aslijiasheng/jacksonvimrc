@@ -1,0 +1,82 @@
+# ~/.tmuxinator/jason.yml
+
+name: jason
+root: /Library/WebServer/Documents/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+pre: 
+  - cd /Library/WebServer/Documents/lanmeishuo/lanmeishuo/
+  - git checkout jackson-dev
+  - git diff
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+tmux_options: -f ~/.tmux.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t jason
+
+windows:
+  - jason:
+      layout: main-horizon
+      panes:
+        - jason:
+          - cd ~
+        # - nvim .
+  # - php:
+      # layout: main-horizon
+      # panes:
+        # - php:
+          # - cd ~
+          # - j document
+  # - golang:
+      # layout: main-horizon
+      # panes:
+        # - golang:
+          # - cd ~
+          # - j go
+  # - mysql:
+      # layout: main-horizon
+      # panes:
+        # - mysql:
+            # - mycli -uroot --pass 871027
+            # - pager grcat ~/.grcat | less -RSFXin
+  # - pgcli:
+      # layout: main-horizon
+      # panes:
+        # - pgcli:
+            # - pgcli
+  # - redis:
+      # layout: main-horizon
+      # panes:
+        # - redis:
+            # - redis-cli
+  # - docker:
+      # layout: main-horizon
+      # panes:
+        # - docker:
+            # - j docker
+  # - log:
+      # layout: main-horizon
+      # panes:
+        # - log:
+            # - cd /tmp/log/
+  # - vim:
+      # layout: main-horizon
+      # panes:
+        # - vim:
+            # - cd ~/.vim

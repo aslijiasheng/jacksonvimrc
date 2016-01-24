@@ -1,102 +1,3 @@
-set nocompatible              " be iMproved
-filetype off                  " required!
-
-"NeoBundle Scripts-----------------------------
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" set rtp+=~/.vim/bundle/vundle/
-" call vundle#rc()
-"
-" let Vundle manage Vundle
-" " required! 
-" Bundle 'gmarik/vundle'
-"
-" " 可以通过以下四种方式指定插件的来源
-" " a)
-" 指定Github中vim-scripts仓库中的插件，直接指定插件名称即可，插件明中的空格使用“-”代替。
-" Bundle 'L9'
-"
-" “ b) 指定Github中其他用户仓库的插件，使用“用户名/插件名称”的方式指定
-" Bundle 'tpope/vim-fugitive'
-" Bundle 'Lokaltog/vim-easymotion'
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Bundle 'tpope/vim-rails.git'
-"
-" " c) 指定非Github的Git仓库的插件，需要使用git地址
-" Bundle 'git://git.wincent.com/command-t.git'
-"
-" " d) 指定本地Git仓库中的插件
-" Bundle 'file:///Users/gmarik/path/to/plugin'
-"
-" filetype plugin indent on     " required!
-" source ~/.vim/plugins.vim
-source ~/.vim/neoplugins.vim
-"=============用户自定义变量=====================
-let g:u_name = 'sky' "user name
-let g:u_email = 'aslijiasheng@gmail.com' "email
-let u_path = '~/.tmp' "vim tmp 目录
-let u_swap_path=u_path.'/vim/swap' "vim swap 交换文件存放目录
-let g:u_undo_path=u_path.'/vim/undo' "vim undo (撤销操作 文件保存路径) 
-"================用户自定义变量结束===================
-filetype plugin indent on " 开启插件
-syntax on " 自动语法高亮
-let mapleader = ","
-nnoremap \ ,
-syntax enable
-" set background=dark
-set background=dark
-" let g:solarized_termcolors=256
-colorscheme solarized
-" colorscheme molokai "设定配色方案
-"set cuc " 设置标尺来显示代码对齐
-"set list " 显示行尾换行符号
-"set cc=80
-set number " 显示行号
-set cursorline " 突出显示当前行
-set ruler " 打开状态栏标尺
-set autoindent "自动缩进
-set autoread " 设置当文件被改动时自动载入
-set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
-set expandtab "空格代替 Tab
-set tabstop=4 " 设定 tab 长度为 4
-set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
-set nobackup " 覆盖文件时不备份
-set tags=tags; " tags 插件
-"set autochdir " 改变vim tgas 的当前目录
-set backupcopy=yes " 设置备份时的行为为覆盖
-set ignorecase smartcase " 搜索时忽略大小写，但在采用的模式有一个或以上大写字母时仍保持对大小写敏感
-"set nowrapscan " 禁止在搜索到文件两端时重新搜索
-set incsearch " 输入搜索内容时就显示搜索结果
-set hlsearch " 搜索时高亮显示被找到的文本
-set noerrorbells " 关闭错误信息响铃
-set novisualbell " 关闭使用可视响铃代替呼叫
-set t_vb= " 置空错误铃声的终端代码
-" set showmatch " 插入括号时，短暂地跳转到匹配的对应括号
-" set matchtime=2 " 短暂跳转到匹配括号的时间
-set magic " 设置魔术
-set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
-set guioptions-=T " 隐藏工具栏
-set guioptions-=m " 隐藏菜单栏
-set guioptions-=l
-set guioptions-=r
-set smartindent " 开启新行时使用智能自动缩进
-set backspace=indent,eol,start " 不设定在插入状态无法用退格键和 Delete 键删除回车符
-set cmdheight=1 " 设定命令行的行数为 1
-set laststatus=2 " 总是显示状态栏 (默认值为 1, 无法显示状态栏)
-set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\  " 设置在状态行显示的信息
-set foldenable " 开始折叠
-set foldmethod=syntax " 设置语法折叠
-set foldcolumn=0 " 设置折叠区域的宽度
-set foldlevel=3 " 设置折叠层数为
-set history=1000
-set clipboard+=unnamed
 "
 "WMToggle 设置开始
 let Tlist_Show_One_File=1
@@ -231,15 +132,15 @@ nnoremap <Leader>td :CtrlPBookmarkDir<return> "书签标记的工作目录
 nnoremap <Leader>ta :CtrlPBookmarkDirAdd<return> "添加标记书签工作目录 <F5>刷新 <F7>清除
 "使用方式	ctrl+t	新窗口打开查找的文件
 "Nerdtree 目录导航插件配置开始
-" noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-" let NERDTreeShowBookmarks=1
-" let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-" let NERDTreeChDirMode=0
-" let NERDTreeQuitOnOpen=1
-" let NERDTreeMouseMode=2
-" let NERDTreeShowHidden=1
-" let NERDTreeKeepTreeInNewTab=1
-" let g:nerdtree_tabs_open_on_gui_startup=0
+noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
 "Nerdtree 目录导航插件配置结束
 "
 "sessionman 配置开始
@@ -560,33 +461,33 @@ let g:webdevicons_enable_ctrlp = 0
 let g:webdevicons_enable_flagship_statusline = 0
 let g:WebDevIconsUnicodeDecorateFileNodes = 0
 "vimfiler目录
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default = 0
-let g:vimfiler_tree_leaf_icon = " "
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_file_icon = '-'
-let g:vimfiler_marked_file_icon = '✓'
-let g:vimfiler_readonly_file_icon = '✗'
-let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
-let g:vimfiler_expand_jump_to_first_child = 0
-" let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
-let g:vimfiler_ignore_pattern = '\.pyc\|\~$\|\.swo$\|\.swp$\|\.git\|\.hg\|\.svn\|\.bzr'
-let g:vimfiler_enable_auto_cd = 1
-let g:vimfiler_quick_look_command = 'gloobus-preview'
-nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -toggle -no-quit -auto-cd<CR>
-nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -no-quit -find<CR>
-autocmd FileType vimfiler nunmap <buffer> x
-autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
-autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
-autocmd FileType vimfiler nunmap <buffer> l
-autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
-autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
-autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
-autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)<Plug>(vimfiler_edit_file)
-autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
-\ "\<Plug>(vimfiler_expand_tree)",
-\ "\<Plug>(vimfiler_edit_file)")
+" let g:vimfiler_as_default_explorer = 1
+" let g:vimfiler_safe_mode_by_default = 0
+" let g:vimfiler_tree_leaf_icon = " "
+" let g:vimfiler_tree_opened_icon = '▾'
+" let g:vimfiler_tree_closed_icon = '▸'
+" let g:vimfiler_file_icon = '-'
+" let g:vimfiler_marked_file_icon = '✓'
+" let g:vimfiler_readonly_file_icon = '✗'
+" let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
+" let g:vimfiler_expand_jump_to_first_child = 0
+" " let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
+" let g:vimfiler_ignore_pattern = '\.pyc\|\~$\|\.swo$\|\.swp$\|\.git\|\.hg\|\.svn\|\.bzr'
+" let g:vimfiler_enable_auto_cd = 1
+" let g:vimfiler_quick_look_command = 'gloobus-preview'
+" nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -toggle -no-quit -auto-cd<CR>
+" nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -no-quit -find<CR>
+" autocmd FileType vimfiler nunmap <buffer> x
+" autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
+" autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
+" autocmd FileType vimfiler nunmap <buffer> l
+" autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
+" autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
+" autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
+" autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)<Plug>(vimfiler_edit_file)
+" autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
+" \ "\<Plug>(vimfiler_expand_tree)",
+" \ "\<Plug>(vimfiler_edit_file)")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ARROW KEYS ARE UNACCEPTABLE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -608,7 +509,7 @@ nnoremap <leader>] :call SaveIfModified()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Copy paste system clipboard
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>y "*y
+nnoremap <leader><leader>y "*y
 nnoremap <leader>p "*p
 nnoremap <leader>P "*P
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -661,86 +562,14 @@ function TabQuickMove(tabLabel, ...)
     let bufferTab = a:tabLabel
     execute 'buffer' bufferTab
 endfunction
-map <silent>  tt  :call TabQuickMove(input("Enter tabLabel: "))<CR>
-"颜色高亮配置
-let g:landscape_highlight_full_space=1
-highlight Normal gui=none guifg=#dddddd guibg=grey0
-highlight Macro term=none ctermfg=36 gui=none guifg=#00af87
-highlight Debug term=none ctermfg=183 gui=none guifg=violet
-
-highlight TabLine ctermfg=253 ctermbg=241 guifg=#dadada guibg=#606060
-highlight TabLineFill ctermfg=253 ctermbg=241 guifg=#dadada guibg=#606060
-highlight TabLineSel cterm=bold ctermfg=253 guifg=#dadada
-highlight default link VisualNOS Visual
-highlight Error term=none ctermfg=15 ctermbg=124 gui=none guifg=#ffffff guibg=#af0000
-highlight WarningMsg term=none ctermfg=7 ctermbg=0 gui=none guifg=#c0c0c0 guibg=#000000
-highlight DiffAdd term=none cterm=none ctermfg=none ctermbg=22 guifg=fg guibg=#005f00
-highlight DiffChange term=none cterm=none ctermfg=none ctermbg=52 guifg=fg guibg=#5f0000
-highlight DiffDelete term=none cterm=none ctermfg=none ctermbg=88 guifg=fg guibg=#870000
-highlight DiffText term=none cterm=none ctermfg=none ctermbg=160 guifg=fg guibg=#df0000
-highlight DiffFile term=none cterm=none ctermfg=47 ctermbg=none guifg=#00ff5f guibg=bg
-highlight DiffNewFile term=none cterm=none ctermfg=199 ctermbg=none guifg=#ff00af guibg=bg
-highlight default link DiffRemoved DiffDelete
-highlight DiffLine term=none cterm=none ctermfg=129 ctermbg=none guifg=#af00ff guibg=bg
-highlight default link DiffAdded DiffAdd
-highlight default link ErrorMsg Error
-highlight default link FullSpace Error
-if version >= 700
-  if get(g:, 'landscape_cursorline', 1)
-    highlight CursorLine term=none cterm=none ctermbg=235 gui=none guibg=#262626
-    highlight CursorLineNr term=underline cterm=bold ctermfg=148 ctermbg=235 gui=bold guifg=#afdf00 guibg=#262626
-  else
-    highlight clear CursorLine
-    highlight CursorLineNr term=NONE ctermbg=NONE guibg=NONE
-  endif
-  highlight ColorColumn term=none cterm=none ctermbg=239 gui=none guibg=#4e4e4e
-  highlight Cursor term=reverse cterm=reverse gui=reverse guifg=NONE guibg=NONE
-  highlight CursorColumn term=none cterm=none ctermbg=235 gui=none guibg=#262626
-  highlight LineNr term=none ctermfg=58 ctermbg=none guifg=#5f5f00 guibg=bg
-  highlight MatchParen ctermfg=none ctermbg=238 guibg=#4e4e4e
-  highlight Pmenu ctermfg=233 ctermbg=249 gui=none guifg=#121212 guibg=#b2b2b2
-  highlight PmenuSel ctermfg=233 ctermbg=242 gui=none guifg=#121212 guibg=#666666
-  highlight PmenuSbar ctermfg=233 ctermbg=244 gui=none guifg=#121212 guibg=#808080
-  highlight PmenuThumb ctermfg=233 ctermbg=239 gui=none guifg=#121212 guibg=#4e4e4e
-endif
-highlight Search cterm=reverse ctermfg=220 ctermbg=234 gui=reverse guifg=#ffdf00 guibg=#1c1c1c
-highlight IncSearch cterm=reverse ctermfg=136 ctermbg=236 gui=reverse guifg=#af8700 guibg=#303030
-
-highlight default link vimCmplxRepeat Normal
-
-" for vimshell, vimfiler, unite.vim
-highlight default link Command Function
-highlight default link GitCommand Constant
-highlight default link Arguments Type
-highlight default link PdfHtml Function
-highlight default link Archive Special
-highlight default link Image Type
-highlight default link Multimedia SpecialComment
-highlight default link System Comment
-highlight default link Text Constant
-highlight default link Link Constant
-highlight default link Exe Statement
-highlight default link Prompt PreCondit
-highlight default link Icon LineNr
-highlight Time ctermfg=141 ctermbg=none gui=none guifg=#af87ff
-highlight Date ctermfg=140 ctermbg=none gui=none guifg=#af87df
-highlight default link DateToday Special
-highlight default link DateWeek Identifier
-highlight default link DateOld Comment
-highlight default link Path Preproc
-highlight default link Marked StorageClass
-highlight default link Title Identifier
-"bookmarks
-highlight BookmarkSign ctermbg=NONE ctermfg=160
-highlight BookmarkLine ctermbg=194 ctermfg=NONE
-let g:bookmark_sign = '♥'
-let g:bookmark_highlight_lines = 1
-nmap <silent>mm <Plug>BookmarkToggle
-nmap <silent>mi <Plug>BookmarkAnnotate
-nmap <silent>ma <Plug>BookmarkShowAll
-nmap <silent>mj <Plug>BookmarkNext
-nmap <silent>mk <Plug>BookmarkPrev
-nmap <silent>mc <Plug>BookmarkClear
-nmap <silent>mx <Plug>BookmarkClearAll
-nmap <silent>mk <Plug>BookmarkMoveUp
-nmap <silent>mj <Plug>BookmarkMoveDown
+nnoremap <silent>  tt  :call TabQuickMove(input("Enter tabLabel: "))<CR>
+set viewoptions=cursor,folds,slash,unix
+"cscope
+let g:cscope_open_location = 1
+let g:cscope_auto_update = 1
+let g:cscope_silent = 1
+let g:cscope_split_threshold = 9999
+"junkfile
+let g:junkfile#directory = '~/.memo'
+nnoremap <silent> ,e  :<C-u>Unite junkfile/new junkfile -start-insert<CR>
+nnoremap <silent> ,l  :<C-u>Unite junkfile<CR>
