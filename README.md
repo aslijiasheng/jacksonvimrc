@@ -1,5 +1,4 @@
 #Usage
-===
 ``` 
     git clone https://github.com/aslijiasheng/jacksonvimrc 
     cp ./.vimrc ~/.vimrc
