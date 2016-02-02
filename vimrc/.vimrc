@@ -1,17 +1,18 @@
-set nocompatible              " be iMproved
-filetype off                  " required!
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
 "NeoBundle Scripts-----------------------------
 if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
+    if &compatible
+        set nocompatible               " Be iMproved
+    endif
 
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+    "Required:
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-" set rtp+=~/.vim/bundle/vundle/
+"set rtp+=~/.vim/bundle/vundle/
+" set rtp+=~/.vim/bundle/Vundle.vim
 " call vundle#rc()
 "
 " let Vundle manage Vundle
@@ -19,7 +20,7 @@ endif
 " Bundle 'gmarik/vundle'
 "
 " " 可以通过以下四种方式指定插件的来源
-" " a)
+" " a"
 " 指定Github中vim-scripts仓库中的插件，直接指定插件名称即可，插件明中的空格使用“-”代替。
 " Bundle 'L9'
 "
@@ -29,14 +30,13 @@ endif
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Bundle 'tpope/vim-rails.git'
 "
-" " c) 指定非Github的Git仓库的插件，需要使用git地址
+" " c" 指定非Github的Git仓库的插件，需要使用git地址
 " Bundle 'git://git.wincent.com/command-t.git'
 "
 " " d) 指定本地Git仓库中的插件
 " Bundle 'file:///Users/gmarik/path/to/plugin'
 "
-" filetype plugin indent on     " required!
-" source ~/.vim/plugins.vim
+" filetype plugin indent on     required!
 source ~/.vim/neoplugins.vim
 "导入外部vim文件
 source ~/.vim/jackson/normal.vim

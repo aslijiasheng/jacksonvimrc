@@ -144,7 +144,7 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 "Nerdtree 目录导航插件配置结束
 "
 "sessionman 配置开始
-"set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 nmap <leader>sl :SessionList<CR>
 nmap <leader>ss :SessionSave<CR>
 nmap <leader>sc :SessionClose<CR>
@@ -160,7 +160,7 @@ nnoremap <leader>ig :IndentLinesToggle<CR>:set list! lcs=tab:\\|\<Space><CR>
 "
 "vim-powerline 配置开始
 set t_Co=256
-"let g:Powerline_symbols = 'fancy'
+" let g:Powerline_symbols = 'fancy'
 "vim-powerline 配置结束
 "
 "添加注释信息插件 配置开始
@@ -311,7 +311,7 @@ let g:unite_source_history_yank_enable = 1
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+nnoremap <leader>bw :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 nnoremap <leader>s :<C-u>Unite -buffer-name=grep grep<cr>
 
 " Ignore
@@ -446,20 +446,6 @@ augroup phpSyntaxOverride
   autocmd!
   autocmd FileType php call PhpSyntaxOverride()
 augroup END
-"webdevicons图标
-set laststatus=2
-set showtabline=2
-set guioptions-=e
-let g:airline_powerline_fonts = 1
-let g:webdevicons_enable = 1
-let g:webdevicons_enable_nerdtree = 0
-let g:webdevicons_enable_unite = 0
-let g:webdevicons_enable_vimfiler = 0
-let g:webdevicons_enable_airline_tabline = 1
-let g:webdevicons_enable_airline_statusline = 1
-let g:webdevicons_enable_ctrlp = 0
-let g:webdevicons_enable_flagship_statusline = 0
-let g:WebDevIconsUnicodeDecorateFileNodes = 0
 "vimfiler目录
 " let g:vimfiler_as_default_explorer = 1
 " let g:vimfiler_safe_mode_by_default = 0
@@ -573,3 +559,15 @@ let g:cscope_split_threshold = 9999
 let g:junkfile#directory = '~/.memo'
 nnoremap <silent> ,e  :<C-u>Unite junkfile/new junkfile -start-insert<CR>
 nnoremap <silent> ,l  :<C-u>Unite junkfile<CR>
+nnoremap <silent> ,ju  :jumps<CR>
+"webdevicons图标
+" let g:airline_powerline_fonts = 1
+" let g:webdevicons_enable = 1
+" let g:webdevicons_enable_nerdtree = 0
+" let g:webdevicons_enable_unite = 0
+" let g:webdevicons_enable_vimfiler = 0
+" let g:webdevicons_enable_airline_tabline = 1
+" let g:webdevicons_enable_airline_statusline = 1
+" let g:webdevicons_enable_ctrlp = 0
+" let g:webdevicons_enable_flagship_statusline = 0
+" let g:WebDevIconsUnicodeDecorateFileNodes = 0
