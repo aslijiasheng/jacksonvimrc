@@ -132,15 +132,15 @@ nnoremap <Leader>td :CtrlPBookmarkDir<return> "书签标记的工作目录
 nnoremap <Leader>ta :CtrlPBookmarkDirAdd<return> "添加标记书签工作目录 <F5>刷新 <F7>清除
 "使用方式	ctrl+t	新窗口打开查找的文件
 "Nerdtree 目录导航插件配置开始
-noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
+" noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+" let NERDTreeShowBookmarks=1
+" let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+" let NERDTreeChDirMode=0
+" let NERDTreeQuitOnOpen=1
+" let NERDTreeMouseMode=2
+" let NERDTreeShowHidden=1
+" let NERDTreeKeepTreeInNewTab=1
+" let g:nerdtree_tabs_open_on_gui_startup=0
 "Nerdtree 目录导航插件配置结束
 "
 "sessionman 配置开始
@@ -330,8 +330,8 @@ let g:ag_working_path_mode="r"
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 map \h <Plug>(easymotion-linebackward)
-map ,j <Plug>(easymotion-j)
-map ,k <Plug>(easymotion-k)
+map \j <Plug>(easymotion-j)
+map \k <Plug>(easymotion-k)
 map \l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
@@ -447,33 +447,34 @@ augroup phpSyntaxOverride
   autocmd FileType php call PhpSyntaxOverride()
 augroup END
 "vimfiler目录
-" let g:vimfiler_as_default_explorer = 1
-" let g:vimfiler_safe_mode_by_default = 0
-" let g:vimfiler_tree_leaf_icon = " "
-" let g:vimfiler_tree_opened_icon = '▾'
-" let g:vimfiler_tree_closed_icon = '▸'
-" let g:vimfiler_file_icon = '-'
-" let g:vimfiler_marked_file_icon = '✓'
-" let g:vimfiler_readonly_file_icon = '✗'
-" let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
-" let g:vimfiler_expand_jump_to_first_child = 0
-" " let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
-" let g:vimfiler_ignore_pattern = '\.pyc\|\~$\|\.swo$\|\.swp$\|\.git\|\.hg\|\.svn\|\.bzr'
-" let g:vimfiler_enable_auto_cd = 1
-" let g:vimfiler_quick_look_command = 'gloobus-preview'
-" nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -toggle -no-quit -auto-cd<CR>
-" nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -no-quit -find<CR>
-" autocmd FileType vimfiler nunmap <buffer> x
-" autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
-" autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
-" autocmd FileType vimfiler nunmap <buffer> l
-" autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
-" autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
-" autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_tree_leaf_icon = " "
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '✓'
+let g:vimfiler_readonly_file_icon = '✗'
+let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
+let g:vimfiler_expand_jump_to_first_child = 0
+" let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
+let g:vimfiler_ignore_pattern = '\.pyc\|\~$\|\.swo$\|\.swp$\|\.git\|\.hg\|\.svn\|\.bzr'
+let g:vimfiler_enable_auto_cd = 1
+let g:vimfiler_quick_look_command = 'gloobus-preview'
+nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -toggle -no-quit -auto-cd<CR>
+nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -no-quit -find<CR>
+autocmd FileType vimfiler nunmap <buffer> x
+autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
+autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
+autocmd FileType vimfiler nunmap <buffer> l
+autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
+autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
+autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
 " autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)<Plug>(vimfiler_edit_file)
-" autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
-" \ "\<Plug>(vimfiler_expand_tree)",
-" \ "\<Plug>(vimfiler_edit_file)")
+autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)
+autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
+\ "\<Plug>(vimfiler_expand_tree)",
+\ "\<Plug>(vimfiler_edit_file)")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ARROW KEYS ARE UNACCEPTABLE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -489,8 +490,8 @@ function! SaveIfModified()
 endfunction
 
 " key mapping for error navigation
-nnoremap <leader>[ :call SaveIfModified()<CR>  
-nnoremap <leader>] :call SaveIfModified()<CR>
+nnoremap <leader>w :call SaveIfModified()<CR>  
+nnoremap <leader>W :call SaveIfModified()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Copy paste system clipboard
@@ -529,7 +530,6 @@ function AlignLine(align, ...)
     endif
 endfunction
 "快速保存与退出自定义映射快捷键
-nnoremap <leader>w :w<cr>
 nnoremap <leader>wa :wall<cr>
 nnoremap <leader>wq :wqa<cr>
 nnoremap <leader>vs :vs<cr>
@@ -571,3 +571,5 @@ nnoremap <silent> ,ju  :jumps<CR>
 " let g:webdevicons_enable_ctrlp = 0
 " let g:webdevicons_enable_flagship_statusline = 0
 " let g:WebDevIconsUnicodeDecorateFileNodes = 0
+"回到上次光标位置
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif 
