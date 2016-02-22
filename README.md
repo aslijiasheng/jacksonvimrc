@@ -1,8 +1,10 @@
 #Usage
 ``` 
     git clone https://github.com/aslijiasheng/jacksonvimrc 
-    cp ./.vimrc ~/.vimrc
-    mkdir -p ~/.vim/jackson/
-    cp ./vimrc/ ~/.vim/jackson/
-    cp ./tmuxconf/.tmux.conf/ ~/.tmux.conf
+    cd jacksonvimrc
+    ln -s `pwd`/vimrc/vimrc  ~/.vimrc
+
+    ln -s `pwd`/tmuxconf/tmux.conf ~/.tmux.conf
+
+    ln -s `pwd`/vimrc/jackson ~/.vim/jackson
 ```
