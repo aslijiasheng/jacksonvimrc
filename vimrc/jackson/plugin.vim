@@ -93,36 +93,36 @@ let javascript_enable_domhtmlcss=1
 noremap <leader>sm :call SetComment()<return>
 "/* 加入注释 */
 func SetComment()
-     normal o
-     call setline(line("."),"    /*") 
-     call append(line("."), "     * @Func:")
-     call append(line(".")+1, "     * @Author:".g:u_name)
-     call append(line(".")+2, "     * @Crate Time:".strftime("%Y-%m-%d %H:%M")) 
-     call append(line(".")+3, "     * @Last modified:".strftime("%Y-%m-%d %H:%M")) 
-     call append(line(".")+4, "     * @Description:") 
-     call append(line(".")+5, "     * @Return:")
-     call append(line(".")+6, "     */") 
- endfunc
+    normal o
+    call setline(line("."),"    /*") 
+    call append(line("."), "     * @Func:")
+    call append(line(".")+1, "     * @Author:".g:u_name)
+    call append(line(".")+2, "     * @Crate Time:".strftime("%Y-%m-%d %H:%M")) 
+    call append(line(".")+3, "     * @Last modified:".strftime("%Y-%m-%d %H:%M")) 
+    call append(line(".")+4, "     * @Description:") 
+    call append(line(".")+5, "     * @Return:")
+    call append(line(".")+6, "     */") 
+endfunc
 "echo php print_r debug
 noremap <leader>pr :call EchoPrintR()<return>
 "print_r function
 func EchoPrintR()
-     normal o
-     call setline('.', "echo '<pre>';")
-     let firstLn = line('.')
-     normal o
-     call setline('.', 'print_r();')
-     let gotoLn = line('.')
-     normal o
-     call setline('.', "echo '</pre>';")
-     normal o
-     call setline('.', 'exit();')
-     exe 'normal '.firstLn.'G'
-     exe 'normal 4V='
-     exe 'normal '.gotoLn.'G'
-     exe "normal /)\<CR>"
-     startinsert
- endfunc
+    normal o
+    call setline('.', "echo '<pre>';")
+    let firstLn = line('.')
+    normal o
+    call setline('.', 'print_r();')
+    let gotoLn = line('.')
+    normal o
+    call setline('.', "echo '</pre>';")
+    normal o
+    call setline('.', 'exit();')
+    exe 'normal '.firstLn.'G'
+    exe 'normal 4V='
+    exe 'normal '.gotoLn.'G'
+    exe "normal /)\<CR>"
+    startinsert
+endfunc
 imap <C-T> <pre><CR>print_r()<C-O>mz;<CR></pre><C-O>`z 
 "CtrlP插件	查找并打开文件
 nnoremap <leader>tp :CtrlP<return> "文件搜索模式打开
@@ -200,13 +200,13 @@ function! GenerateCtags()
     else
         echohl  ErrorMsg | echo "Generate tags fail!" | echohl None
     endif
-        exe 'set tags+=' . Find_project_root() .'/tags'
+    exe 'set tags+=' . Find_project_root() .'/tags'
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "look up project root directory
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !exists('g:project_root_marker')
-  let g:project_root_marker = [".git", ".hg", ".svn", ".bzr", "_darcs", "CVS"]
+    let g:project_root_marker = [".git", ".hg", ".svn", ".bzr", "_darcs", "CVS"]
 endif
 
 function! Find_project_root()
@@ -301,9 +301,9 @@ let g:airline_theme='light'
 " quickrun
 let g:quickrun_config={'*': {'split': ''}}
 let g:quickrun_config._={ 'runner':'vimproc',
-\       "runner/vimproc/updatetime" : 10,
-\       "outputter/buffer/close_on_empty" : 1,
-\ }
+            \       "runner/vimproc/updatetime" : 10,
+            \       "outputter/buffer/close_on_empty" : 1,
+            \ }
 
 " Unite
 
@@ -320,8 +320,8 @@ call unite#custom#source('file_rec/async,file', 'ignore_pattern', 'bower_compone
 " Configure Ag and use it instead of grep
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts =
-\ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
-\  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+            \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+            \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
 let g:unite_source_grep_recursive_opt = ''
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -337,32 +337,32 @@ map \l <Plug>(easymotion-lineforward)
 map <Leader><leader>. <Plug>(easymotion-repeat)
 "gotags
 let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
 "自动补全
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
@@ -378,8 +378,8 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : ''
-    \ }
+            \ 'default' : ''
+            \ }
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplcache#undo_completion()
@@ -389,7 +389,7 @@ inoremap <expr><C-l>     neocomplcache#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
+    return neocomplcache#smart_close_popup() . "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -438,13 +438,13 @@ nnoremap <leader>r :<C-U>RangerChooser<CR>
 " Put at the very end of your .vimrc file.
 "php语法高亮
 function! PhpSyntaxOverride()
-  hi! def link phpDocTags  phpDefine
-  hi! def link phpDocParam phpType
+    hi! def link phpDocTags  phpDefine
+    hi! def link phpDocParam phpType
 endfunction
 
 augroup phpSyntaxOverride
-  autocmd!
-  autocmd FileType php call PhpSyntaxOverride()
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
 augroup END
 "vimfiler目录
 " let g:vimfiler_as_default_explorer = 1
@@ -484,9 +484,9 @@ map <Up> :echo "no!"<cr>
 map <Down> :echo "no!"<cr>
 
 function! SaveIfModified()
-  if &modified
-    :w
-  endif
+    if &modified
+        :w
+    endif
 endfunction
 
 " key mapping for error navigation
@@ -503,9 +503,9 @@ nnoremap <leader>P "*P
 " Quit help easily
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! QuitWithQ()
-  if &buftype == 'help'
-    nnoremap <buffer> <silent> q :q<cr>
-  endif
+    if &buftype == 'help'
+        nnoremap <buffer> <silent> q :q<cr>
+    endif
 endfunction
 autocmd FileType help exe QuitWithQ()
 " CTags
@@ -513,14 +513,14 @@ map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 
 "退出不保存
 function! QuitNotSave()
-  if !unite#util#input_yesno('confirm quit but it not save file?')
-    echo 'Canceled.'
-    return
-  else
-    echo 'Doing quit!!!'
-    :qa
-    echo 'Done!!!'
-  endif
+    if !unite#util#input_yesno('confirm quit but it not save file?')
+        echo 'Canceled.'
+        return
+    else
+        echo 'Doing quit!!!'
+        :qa
+        echo 'Done!!!'
+    endif
 endfunction
 "自动对齐
 function AlignLine(align, ...)
@@ -530,6 +530,7 @@ function AlignLine(align, ...)
     endif
 endfunction
 "快速保存与退出自定义映射快捷键
+nnoremap <leader>w :w<cr>
 nnoremap <leader>wa :wall<cr>
 nnoremap <leader>wq :wqa<cr>
 nnoremap <leader>vs :vs<cr>
@@ -573,3 +574,9 @@ nnoremap <silent> ,ju  :jumps<CR>
 " let g:WebDevIconsUnicodeDecorateFileNodes = 0
 "回到上次光标位置
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif 
+"showfunction
+function! Showfunctions()
+    execute 'ShowFuncAll' 
+    execute 'copen' 
+endfunction
+nnoremap <Leader>tb :call Showfunctions()<CR>

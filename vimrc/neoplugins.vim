@@ -136,6 +136,9 @@ NeoBundle 'tpope/vim-vividchalk'
 NeoBundle 'ahawkins/vim-candy'
 "创建备忘录插件
 NeoBundle 'Shougo/junkfile.vim'
+"showfunctionall
+NeoBundle 'mtglsk/showfunc'
+NeoBundle 'Yggdroot/vim-mark'
 " Required:
 call neobundle#end()
 

@@ -44,3 +44,4 @@ source ~/.vim/jackson/plugin.vim
 source ~/.vim/jackson/highlight.vim
 source ~/.vim/jackson/bookmark.vim
 source ~/.vim/jackson/cscope_maps.vim
+source ~/.vim/jackson/mark.vim
