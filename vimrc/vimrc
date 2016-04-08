@@ -37,11 +37,11 @@ endif
 " Bundle 'file:///Users/gmarik/path/to/plugin'
 "
 " filetype plugin indent on     required!
+" 插件管理文件
 source ~/.vim/neoplugins.vim
 "导入外部vim文件
-source ~/.vim/jackson/normal.vim
-source ~/.vim/jackson/plugin.vim
+for f in split(glob('~/.vim/jackson/*.vim'), '\n')
+    exe 'source' f
+endfor
+" 配色单独处理
 source ~/.vim/jackson/highlight.vim
-source ~/.vim/jackson/bookmark.vim
-source ~/.vim/jackson/cscope_maps.vim
-source ~/.vim/jackson/mark.vim

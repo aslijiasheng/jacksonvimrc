@@ -580,3 +580,6 @@ function! Showfunctions()
     execute 'copen' 
 endfunction
 nnoremap <Leader>tb :call Showfunctions()<CR>
+"vim-rest
+let b:vrc_header_content_type = 'application/json; charset=utf-8'
+let g:vrc_trigger = '<Leader>rs'

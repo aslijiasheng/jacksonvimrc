@@ -139,6 +139,7 @@ NeoBundle 'Shougo/junkfile.vim'
 "showfunctionall
 NeoBundle 'mtglsk/showfunc'
 NeoBundle 'Yggdroot/vim-mark'
+NeoBundle 'diepm/vim-rest-console'
 " Required:
 call neobundle#end()
 
