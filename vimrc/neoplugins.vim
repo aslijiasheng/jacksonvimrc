@@ -140,6 +140,9 @@ NeoBundle 'Shougo/junkfile.vim'
 NeoBundle 'mtglsk/showfunc'
 NeoBundle 'Yggdroot/vim-mark'
 NeoBundle 'diepm/vim-rest-console'
+"debug vim plugin"
+NeoBundle 'albfan/vim-breakpts'
+NeoBundle 'vim-scripts/genutils'
 " Required:
 call neobundle#end()
 
