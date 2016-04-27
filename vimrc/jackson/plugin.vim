@@ -625,6 +625,30 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " Don't autofold code
 let g:pymode_folding = 0
 
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 1
+setlocal complete+=t
+setlocal formatoptions-=t
+if v:version > 702 && !&relativenumber
+    setlocal number
+endif
+setlocal nowrap
+setlocal textwidth=79
+setlocal commentstring=#%s
+setlocal define=^\s*\\(def\\\\|class\\)
+let g:pymode_options_max_line_length = 79
+let g:pymode_options_colorcolumn = 1
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 6
+let g:pymode_lint_todo_symbol = 'WW'
+let g:pymode_lint_comment_symbol = 'CC'
+let g:pymode_lint_visual_symbol = 'RR'
+let g:pymode_lint_error_symbol = 'EE'
+let g:pymode_lint_info_symbol = 'II'
+let g:pymode_lint_pyflakes_symbol = 'FF'
+let g:pymode_rope_ropefolder='.ropeproject'
+let g:pymode_rope_completion_bind = '<C-X><C-O>'
+
 augroup vimrc_autocmds
     autocmd!
     " highlight characters past column 120
