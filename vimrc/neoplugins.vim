@@ -143,6 +143,8 @@ NeoBundle 'diepm/vim-rest-console'
 "debug vim plugin"
 NeoBundle 'albfan/vim-breakpts'
 NeoBundle 'vim-scripts/genutils'
+"python plugin
+NeoBundle 'klen/python-mode'
 " Required:
 call neobundle#end()
 
