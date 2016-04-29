@@ -529,8 +529,23 @@ function AlignLine(align, ...)
         execute 'Align' alignLine 
     endif
 endfunction
+function! SaveIfCall()
+    if &filetype == 'python'
+        execute 'PymodeLint'
+        :w
+        if !unite#util#input_yesno('confirm you need autopythonmodelintauto file help?')
+            echo 'Canceled.'
+            return
+        else
+            execute 'PymodeLintAuto'
+            :w
+        endif
+    else
+        :w
+    endif
+endfunction
 "快速保存与退出自定义映射快捷键
-nnoremap <leader>w :w<cr>
+nnoremap <leader>w :call SaveIfCall()<cr>
 nnoremap <leader>wa :wall<cr>
 nnoremap <leader>wq :wqa<cr>
 nnoremap <leader>vs :vs<cr>
@@ -637,17 +652,20 @@ setlocal textwidth=79
 setlocal commentstring=#%s
 setlocal define=^\s*\\(def\\\\|class\\)
 let g:pymode_options_max_line_length = 79
-let g:pymode_options_colorcolumn = 1
+let g:pymode_options_colorcolumn = 0
 let g:pymode_quickfix_minheight = 3
 let g:pymode_quickfix_maxheight = 6
+let g:pymode_rope_ropefolder='.ropeproject'
+let g:pymode_rope_completion_bind = '<C-X><C-O>'
+
+let g:pymode_lint_cwindow = 1
+let g:pymode_lint_signs = 1
 let g:pymode_lint_todo_symbol = 'WW'
 let g:pymode_lint_comment_symbol = 'CC'
 let g:pymode_lint_visual_symbol = 'RR'
 let g:pymode_lint_error_symbol = 'EE'
 let g:pymode_lint_info_symbol = 'II'
 let g:pymode_lint_pyflakes_symbol = 'FF'
-let g:pymode_rope_ropefolder='.ropeproject'
-let g:pymode_rope_completion_bind = '<C-X><C-O>'
 
 augroup vimrc_autocmds
     autocmd!
