@@ -538,10 +538,17 @@ function! SaveIfCall()
             return
         else
             execute 'PymodeLintAuto'
+            execute 'normal zz'
             :w
         endif
     else
         :w
+    endif
+endfunction
+function! Choosez(z, ...)
+    if a:z != ''
+        let zlign = a:z
+        execute 'normal' zlign
     endif
 endfunction
 "快速保存与退出自定义映射快捷键
@@ -553,6 +560,7 @@ nnoremap <leader>sp :sp<cr>
 nnoremap <leader>bd :bd<cr>
 nnoremap <leader>q :call QuitNotSave()<CR>
 map <leader>al :call AlignLine(input("Enter align: "))<CR>
+nnoremap <leader>z :call Choosez(input("Enter zt or zz or zb: "))<CR>  
 "防止neovim在tmux下的错误
 if has('nvim')
     nmap <BS> <C-W>h
@@ -674,3 +682,39 @@ augroup vimrc_autocmds
     autocmd FileType python match Excess /\%120v.*/
     autocmd FileType python set nowrap
     augroup END
+" add jackson
+" Go to home and end using capitalized directions
+noremap H ^
+noremap L $
+" Map ; to : and save a million keystrokes 用于快速进入命令行
+nnoremap ; :
+" 命令行模式增强，ctrl - a到行首， -e 到行尾
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+" 搜索相关
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+" 进入搜索Use sane regexes"
+nnoremap / /\v
+vnoremap / /\v
+" Keep search pattern at the center of the screen.
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+" Last and next jump should center too.
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
+
+" for # indent, python文件中输入新行时#号注释不切回行首
+autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
+" => 选中及操作改键
+
+" 调整缩进后自动选中，方便再次操作
+vnoremap < <gv
+vnoremap > >gv
+" select all
+map <Leader>sa ggVG
+" select block
+nnoremap <leader>v V`}
