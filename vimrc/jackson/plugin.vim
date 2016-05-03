@@ -703,6 +703,7 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
+nnoremap <silent> gd gdzz
 " Last and next jump should center too.
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
