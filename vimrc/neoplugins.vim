@@ -145,6 +145,7 @@ NeoBundle 'albfan/vim-breakpts'
 NeoBundle 'vim-scripts/genutils'
 "python plugin
 NeoBundle 'klen/python-mode'
+NeoBundle 'stephpy/vim-php-cs-fixer'
 " Required:
 call neobundle#end()
 
