@@ -529,6 +529,7 @@ function AlignLine(align, ...)
         execute 'Align' alignLine 
     endif
 endfunction
+"保存针对不同文件做检查
 function! SaveIfCall()
     if &filetype == 'python'
         execute 'PymodeLint'
@@ -542,6 +543,18 @@ function! SaveIfCall()
             :w
         endif
     elseif &filetype == 'php'
+        :w
+        if !unite#util#input_yesno('confirm you need autoformat php code but commnet message is not format?')
+            echo 'Canceled.'
+            return
+        else
+            call PhpCsFixerFixFile()
+            execute 'Phpcs'
+        endif
+    elseif &filetype == 'js'
+        :w
+        execute 'Phpcs'
+    elseif &filetype == 'cs'
         :w
         execute 'Phpcs'
     else
@@ -698,8 +711,8 @@ cnoremap <C-e> <End>
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 " 进入搜索Use sane regexes"
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 " Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
