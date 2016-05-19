@@ -544,19 +544,7 @@ function! SaveIfCall()
         endif
     elseif &filetype == 'php'
         :w
-        if !unite#util#input_yesno('confirm you need autoformat php code but commnet message is not format?')
-            echo 'Canceled.'
-            return
-        else
-            call PhpCsFixerFixFile()
-            execute 'Phpcs'
-        endif
-    elseif &filetype == 'js'
-        :w
-        execute 'Phpcs'
-    elseif &filetype == 'cs'
-        :w
-        execute 'Phpcs'
+        call PhpCsFixerFixFile()
     else
         :w
     endif
@@ -612,7 +600,7 @@ nnoremap <silent> ,ju  :jumps<CR>
 " let g:webdevicons_enable_flagship_statusline = 0
 " let g:WebDevIconsUnicodeDecorateFileNodes = 0
 "回到上次光标位置
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif 
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\" norm zz")|else|exe "norm $ norm zz"|endif|endif 
 "showfunction
 function! Showfunctions()
     execute 'ShowFuncAll' 
@@ -745,8 +733,8 @@ let g:php_cs_fixer_php_path = "php"               " Path to PHP
 " If you want to define specific fixers:
 let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
 let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+let g:php_cs_fixer_dry_run = 1                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 1                    " Return the output of command if 1, else an inline information.
 nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
 nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 
