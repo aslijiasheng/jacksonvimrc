@@ -19,7 +19,7 @@ NeoBundle 'Shougo/neocomplcache'
 "代码注释插件
 NeoBundle 'scrooloose/nerdcommenter'
 "目录文件导航
-" NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 "Vim 中文Help Doc
 NeoBundle 'asins/vimcdoc'
 "Markdown
