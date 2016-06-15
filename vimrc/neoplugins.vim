@@ -14,7 +14,7 @@ NeoBundle 'gmarik/Vundle.vim'
 " NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 "代码补全插件
-NeoBundle 'Shougo/neocomplcache'
+" NeoBundle 'Shougo/neocomplcache'
 " NeoBundle 'Shougo/neocomplete.vim'
 "代码注释插件
 NeoBundle 'scrooloose/nerdcommenter'
@@ -146,6 +146,13 @@ NeoBundle 'vim-scripts/genutils'
 "python plugin
 NeoBundle 'klen/python-mode'
 NeoBundle 'stephpy/vim-php-cs-fixer'
+NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'carlitux/deoplete-ternjs', { 'build': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
+NeoBundle 'zchee/deoplete-jedi'
+NeoBundle 'zchee/deoplete-go', {'build': {'unix': 'make'}}
+NeoBundle 'ryanoasis/vim-devicons'
+NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Required:
 call neobundle#end()
 

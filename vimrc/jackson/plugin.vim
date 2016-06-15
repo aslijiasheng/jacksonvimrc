@@ -297,7 +297,50 @@ let g:phpqa_codesniffer_autorun = 0
 " Show code coverage on load (default = 0)
 let g:phpqa_codecoverage_autorun = 1
 "状态栏增强"
-let g:airline_theme='light'
+" let g:airline_theme='light'
+" airline config
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=0  " buffers at the top as tabs
+let g:airline#extensions#tabline#show_tabs=0
+let g:airline#extensions#tabline#show_tab_type=1
+let g:airline#extensions#tmuxline#enabled=0
+let g:airline_theme = 'light'
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.readonly = ''
+
+let g:airline#extensions#quickfix#quickfix_text = 'QF'
+let g:airline#extensions#quickfix#location_text = 'LL'
+
+" disable unused extensions (performance)
+let g:airline#extensions#bufferline#enabled = 0
+let g:airline#extensions#capslock#enabled   = 0
+let g:airline#extensions#csv#enabled        = 0
+let g:airline#extensions#ctrlspace#enabled  = 0
+let g:airline#extensions#eclim#enabled      = 0
+let g:airline#extensions#hunks#enabled      = 0
+let g:airline#extensions#nrrwrgn#enabled    = 0
+let g:airline#extensions#promptline#enabled = 0
+let g:airline#extensions#syntastic#enabled  = 0
+let g:airline#extensions#taboo#enabled      = 0
+let g:airline#extensions#tagbar#enabled     = 0
+let g:airline#extensions#virtualenv#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
+
+" tmuxline config
+let g:tmuxline_preset = {
+        \ 'a': '#S',
+        \ 'b': '#F',
+        \ 'c': '#W',
+        \ 'win': ['#I', '#W'],
+        \ 'cwin': ['#I', '#W'],
+        \ 'x': '#h',
+        \ 'y': '%b %d',
+        \ 'z': '%R'}
 " quickrun
 let g:quickrun_config={'*': {'split': ''}}
 let g:quickrun_config._={ 'runner':'vimproc',
@@ -367,78 +410,78 @@ let g:tagbar_type_go = {
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" let g:acp_enableAtStartup = 0
+" " Use neocomplcache.
+" let g:neocomplcache_enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplcache_enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplcache_min_syntax_length = 3
+" let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-            \ 'default' : ''
-            \ }
+" " Define dictionary.
+" let g:neocomplcache_dictionary_filetype_lists = {
+            " \ 'default' : ''
+            " \ }
 
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
+" " Plugin key-mappings.
+" inoremap <expr><C-g>     neocomplcache#undo_completion()
+" inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-    return neocomplcache#smart_close_popup() . "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" " Recommended key-mappings.
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+    " return neocomplcache#smart_close_popup() . "\<CR>"
+" endfunction
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplcache#close_popup()
+" inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+" " Close popup by <Space>.
+" "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplcache_enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplcache_enable_insert_char_pre = 1
+" " For cursor moving in insert mode(Not recommended)
+" "inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+" "inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+" "inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+" "inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+" " Or set this.
+" "let g:neocomplcache_enable_cursor_hold_i = 1
+" " Or set this.
+" "let g:neocomplcache_enable_insert_char_pre = 1
 
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+" " AutoComplPop like behavior.
+" "let g:neocomplcache_enable_auto_select = 1
 
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+" " Shell like behavior(not recommended).
+" "set completeopt+=longest
+" "let g:neocomplcache_enable_auto_select = 1
+" "let g:neocomplcache_disable_auto_complete = 1
+" "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" " Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
-endif
-" let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-" let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-" let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" " Enable heavy omni completion.
+" if !exists('g:neocomplcache_force_omni_patterns')
+  " let g:neocomplcache_force_omni_patterns = {}
+" endif
+" " let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" " let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+" " let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" " For perlomni.vim setting.
+" " https://github.com/c9s/perlomni.vim
+" let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "phpmanualphp手册
 let g:php_manual_online_search_shortcut = '<leader>b'
 "ranger
@@ -633,16 +676,19 @@ nnoremap <silent> ,e  :<C-u>Unite junkfile/new junkfile -start-insert<CR>
 nnoremap <silent> ,l  :<C-u>Unite junkfile<CR>
 nnoremap <silent> ,ju  :jumps<CR>
 "webdevicons图标
-" let g:airline_powerline_fonts = 1
-" let g:webdevicons_enable = 1
-" let g:webdevicons_enable_nerdtree = 0
-" let g:webdevicons_enable_unite = 0
-" let g:webdevicons_enable_vimfiler = 0
-" let g:webdevicons_enable_airline_tabline = 1
-" let g:webdevicons_enable_airline_statusline = 1
-" let g:webdevicons_enable_ctrlp = 0
-" let g:webdevicons_enable_flagship_statusline = 0
-" let g:WebDevIconsUnicodeDecorateFileNodes = 0
+if exists("g:loaded_webdevicons")
+    call webdevicons#refresh()
+endif
+let g:airline_powerline_fonts = 1
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_unite = 1
+let g:webdevicons_enable_vimfiler = 0
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_ctrlp = 0
+let g:webdevicons_enable_flagship_statusline = 0
+let g:WebDevIconsUnicodeDecorateFileNodes = 0
 "回到上次光标位置
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\" norm zz")|else|exe "norm $ norm zz"|endif|endif 
 "showfunction
@@ -790,4 +836,64 @@ autocmd BufWritePre *.php :set et|retab
 autocmd BufNewFile,BufRead *.twig set filetype=twig
 autocmd BufNewFile,BufRead *.less set filetype=less
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+"deoplete"
+set completeopt+=noinsert,noselect
+set completeopt-=preview
+let g:deoplete#enable_at_startup = 1
 
+hi Pmenu    gui=NONE    guifg=#c5c8c6 guibg=#373b41
+hi PmenuSel gui=reverse guifg=#c5c8c6 guibg=#373b41
+
+"php"
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.php =
+\ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+
+let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = []
+
+"go"
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#json_directory = '/path/to/data_dir'
+" Use tern_for_vim.
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+"python"
+set omnifunc=jedi#completions
+let g:jedi#auto_initialization = 1
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_select_first = 0
+let g:jedi#completions_enabled = 0
+let g:jedi#force_py_version = 3
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#show_call_signatures = 0
+let g:jedi#max_doc_height = 100
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+" tern
+if exists('g:plugs["tern_for_vim"]')
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+endif
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+" let g:deoplete#disable_auto_complete = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" deoplete tab-complete
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+" ,<Tab> for regular tab
+inoremap <Leader><Tab> <Space><Space>

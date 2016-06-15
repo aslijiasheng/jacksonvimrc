@@ -1,13 +1,12 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 "NeoBundle Scripts-----------------------------
 if has('vim_starting')
     if &compatible
         set nocompatible               " Be iMproved
     endif
 
-    "Required:
+    " " "Required:
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
