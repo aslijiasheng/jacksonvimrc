@@ -151,10 +151,11 @@ NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'carlitux/deoplete-ternjs', { 'build': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
 NeoBundle 'zchee/deoplete-jedi'
 NeoBundle 'zchee/deoplete-go', {'build': {'unix': 'make'}}
-NeoBundle 'ryanoasis/vim-devicons'
-NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
+" NeoBundle 'ryanoasis/vim-devicons'
+" NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 NeoBundle 'joshdick/onedark.vim'
 NeoBundle 'AlexMax/.vim'
+" NeoBundle 'roxma/SimpleAutoComplPop'
 " Required:
 call neobundle#end()
 

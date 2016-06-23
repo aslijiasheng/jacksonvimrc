@@ -37,7 +37,7 @@ set helplang=cn
 "
 " 高亮显示当前行配置开始
 "hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-" hi CursorLine  cterm=underline ctermbg=black ctermfg=none guibg=Grey40 gui=underline guifg=white term=underline
+hi CursorLine  cterm=underline ctermbg=black ctermfg=none guibg=Grey40 gui=underline guifg=white term=underline
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 " 高亮显示当前行配置结束
 " 关闭VIM的时候保存会话
@@ -676,19 +676,19 @@ nnoremap <silent> ,e  :<C-u>Unite junkfile/new junkfile -start-insert<CR>
 nnoremap <silent> ,l  :<C-u>Unite junkfile<CR>
 nnoremap <silent> ,ju  :jumps<CR>
 "webdevicons图标
-if exists("g:loaded_webdevicons")
-    call webdevicons#refresh()
-endif
-let g:airline_powerline_fonts = 1
-let g:webdevicons_enable = 1
-let g:webdevicons_enable_nerdtree = 0
-let g:webdevicons_enable_unite = 1
-let g:webdevicons_enable_vimfiler = 0
-let g:webdevicons_enable_airline_tabline = 1
-let g:webdevicons_enable_airline_statusline = 1
-let g:webdevicons_enable_ctrlp = 0
-let g:webdevicons_enable_flagship_statusline = 0
-let g:WebDevIconsUnicodeDecorateFileNodes = 0
+" if exists("g:loaded_webdevicons")
+    " call webdevicons#refresh()
+" endif
+" let g:airline_powerline_fonts = 1
+" let g:webdevicons_enable = 1
+" let g:webdevicons_enable_nerdtree = 0
+" let g:webdevicons_enable_unite = 0
+" let g:webdevicons_enable_vimfiler = 0
+" let g:webdevicons_enable_airline_tabline = 1
+" let g:webdevicons_enable_airline_statusline = 1
+" let g:webdevicons_enable_ctrlp = 0
+" let g:webdevicons_enable_flagship_statusline = 0
+" let g:WebDevIconsUnicodeDecorateFileNodes = 0
 "回到上次光标位置
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\" norm zz")|else|exe "norm $ norm zz"|endif|endif 
 "showfunction
@@ -842,18 +842,41 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 set completeopt+=noinsert,noselect
 set completeopt-=preview
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_ignore_case = 'ignorecase'
+let g:min_pattern_length = 0
 
 hi Pmenu    gui=NONE    guifg=#c5c8c6 guibg=#373b41
 hi PmenuSel gui=reverse guifg=#c5c8c6 guibg=#373b41
 
 "php"
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.php =
-\ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
+" let g:deoplete#omni_patterns = {}
+" let g:deoplete#omni_patterns.php =
+" \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+" Define keyword
+if !exists('g:deoplete#keyword_patterns')
+    let g:deoplete#keyword_patterns = {}
+endif
+let g:deoplete#keyword_patterns.default = '[a-zA-Z_]\w{2,}?'
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.html = '<[^>]*'
+let g:deoplete#omni#input_patterns.xml  = '<[^>]*'
+let g:deoplete#omni#input_patterns.md   = '<[^>]*'
+let g:deoplete#omni#input_patterns.css   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni#input_patterns.scss   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni#input_patterns.sass   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+" let g:deoplete#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+" let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
+
+" let g:deoplete#omni#input_patterns.javascript = '[^. \t]\.\%(\h\w*\)\?'
+" let g:deoplete#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
+" let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '\h\w*::']
+let g:deoplete#omni#input_patterns.php =
+            \ '\w+|[^. \t]->\w*\|\w+::\w*'
 
 "go"
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
@@ -887,9 +910,6 @@ if exists('g:plugs["tern_for_vim"]')
   let g:tern_show_argument_hints = 'on_hold'
   let g:tern_show_signature_in_pum = 1
   autocmd FileType javascript setlocal omnifunc=tern#Complete
-endif
-if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
 endif
 " let g:deoplete#disable_auto_complete = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
