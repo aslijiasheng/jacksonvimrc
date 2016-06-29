@@ -36,9 +36,9 @@ syntax enable
 " colorscheme vividchalk
 colorscheme solarized
 " colorscheme molokai "设定配色方案
-"set cuc " 设置标尺来显示代码对齐
-"set list " 显示行尾换行符号
-"set cc=80
+" set cuc " 设置标尺来显示代码对齐
+" set list " 显示行尾换行符号
+" set cc=80
 set number " 显示行号
 set cursorline " 突出显示当前行
 set ruler " 打开状态栏标尺
