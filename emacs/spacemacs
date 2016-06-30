@@ -30,7 +30,6 @@ values."
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-private-snippets-directory nil)
-     company
      better-defaults
      highlight-indentation
      emacs-lisp
@@ -47,6 +46,7 @@ values."
      extra-langs
      clojure
      colors
+     company
      auto-completion
      c-c++
      erlang
@@ -85,6 +85,8 @@ values."
      lua
      dash
      cscope
+     python
+     yaml
      (haskell :variables
               haskell-enable-ghc-mod-support t
               haskell-enable-ghci-ng-support t
@@ -139,10 +141,10 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                         monokai
                          spacemacs-light
-                         solarized-light
                          solarized-dark
+                         solarized-light
+                         monokai
                          material
                          subatomic
                          toxi
@@ -218,7 +220,7 @@ values."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -227,6 +229,10 @@ values."
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
+   ;; If non nil show the titles of transient states. (default t)
+   dotspacemacs-show-transient-state-title nil
+   ;; If non nil show the color guide hint for transient state keys. (default t)
+   dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -281,9 +287,10 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (global-auto-complete-mode)
+  ;; (global-company-mode)
   (golden-ratio-mode 1)
   ;;(whitespace-mode 1)
-  (crosshairs-mode 1)
+  ;; (crosshairs-mode 1)
   ;; auto-complete-mode
   (setq undo-tree-auto-save-history t
         undo-tree-history-directory-alist
@@ -358,6 +365,17 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hasklig" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ ;; '(default ((t (:family "Hasklig" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
+ ;; '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ ;; '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ )
+
+ ;; '(ahs-definition-face ((t (:foreground "#d33682" :slant normal :weight bold))))
+ ;; '(ahs-face ((t (:foreground "#d33682" :weight bold))))
+ ;; '(command-log-key ((t (:foreground "dark cyan"))))
+ ;; '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ ;; '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ ;; '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
+ ;; '(iedit-occurrence ((t (:inherit cursor))))
+ ;; '(js2-external-variable ((t (:foreground "lime green"))))
+ ;; '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
