@@ -87,6 +87,8 @@ values."
      cscope
      python
      yaml
+     json
+     quickrun
      (haskell :variables
               haskell-enable-ghc-mod-support t
               haskell-enable-ghci-ng-support t
@@ -97,6 +99,8 @@ values."
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(auto-complete
+                                      company-ghc
+                                      ghc
                                       ac-js2
                                       tern-auto-complete)
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -156,7 +160,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Hasklig"
                                :size   11
                                :weight normal
                                :width  normal
@@ -216,11 +220,11 @@ values."
    dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
-   dotspacemacs-fullscreen-use-non-native nil
+   dotspacemacs-fullscreen-use-non-native t
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -230,7 +234,7 @@ values."
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
    ;; If non nil show the titles of transient states. (default t)
-   dotspacemacs-show-transient-state-title nil
+   dotspacemacs-show-transient-state-title t
    ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
@@ -263,6 +267,12 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+
+  ;; Use emacs 24.4 desktop save mode
+  ;; Restores buffer and frames on emacs start to the previous configuration
+  ;; restores buffer file and emacs configuration 此配置会恢复buffer中所有文件以及配置
+  (desktop-save-mode t)
+
   (add-to-list 'exec-path "~/.cabal/bin/")
   (setq-default
     ;; js2-mode
@@ -280,6 +290,9 @@ user code."
   (setq neo-smart-open t)
   (setq-default indent-tabs-mode nil)
   (setq-default git-magit-status-fullscreen t)
+  ;; don't use fish in emacs shells
+  (setq explicit-shell-file-name "/bin/zsh")
+  (setq shell-file-name "/bin/zsh")
   )
 
 (defun dotspacemacs/user-config ()
@@ -287,6 +300,110 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (global-auto-complete-mode)
+
+  ;;========robect
+  "This is were you can ultimately override default Spacemacs configuration.
+This function is called at the very end of Spacemacs initialization."
+  ;; use same OS X key configurations
+  (setq mac-command-modifier 'meta mac-option-modifier nil)
+  (setq evil-want-fine-undo nil)
+  ;; Sane cursor and window movements
+  (setq scroll-preserve-screen-position 1
+        smooth-scroll-margin 3
+        scroll-margin 4)
+  ;; not needed (just visual select the line) and interferes with shm-mode
+  (global-hl-line-mode 1)
+
+  (use-package golden-ratio
+    :defer t
+    :config
+    (progn
+      (eval-after-load 'golden-ratio
+        '(add-to-list 'golden-ratio-exclude-buffer-names
+                      "*eshell-1*"))
+      ))
+
+  (use-package company
+    :defer t
+    :init
+    (progn
+      (setq company-frontends '(company-pseudo-tooltip-frontend
+                                company-echo-metadata-frontend))))
+
+  ;; disable helm for some commands
+  ;; (use-package helm
+  ;;   :defer t
+  ;;   :config
+  ;;   (progn
+  ;;     (add-to-list 'helm-completing-read-handlers-alist '(describe-variable . ido))
+  ;;     (add-to-list 'helm-completing-read-handlers-alist '(TeX-command-master . ido))
+  ;;     ))
+
+  ;; get these buffers out of the way!
+  (push '("*GHC Info*" :noselect t) popwin:special-display-config)
+  (push '("*Warnings*" :noselect t) popwin:special-display-config)
+
+  (when (configuration-layer/layer-usedp 'syntax-checking)
+    (setq-default flycheck-disabled-checkers '(haskell-ghc javascript-jshint)))
+
+  (when (configuration-layer/layer-usedp 'auto-completion)
+    (use-package scss-mode
+      :defer t
+      :init
+      (progn
+        (add-hook 'scss-mode 'turn-on-smartparens-mode)
+        )
+      )
+    )
+
+  ;; haskell config
+  (use-package haskell-mode
+    :defer t
+    :init
+    (progn
+      (evil-define-key 'normal haskell-mode-map ")" 'shm/close-paren)
+      (evil-define-key 'insert haskell-mode-map (kbd "RET") 'shm/newline-indent)
+      ;; (evil-leader/set-key-for-mode 'haskell-mode
+        ;; "mht" 'ide-backend-mode-type
+        ;; "mt" 'ide-backend-mode-type ;; mht is really not that nice to type.
+        ;; "ml" 'ide-backend-mode-load))
+    ;; :config
+    ;; (progn
+    ;;   (add-hook 'haskell-mode-hook 'custom-haskell-mode-hook)
+    ;;   (require 'ide-backend-mode)
+    ;;   (require 'company-ide-backend)
+    ;;   (add-hook 'haskell-mode-hook 'ide-backend-mode)
+    ;;   (spacemacs|add-company-hook haskell-mode)
+    ;;   (push '(company-ide-backend) company-backends-haskell-mode)
+    ;;   (when (configuration-layer/layer-usedp 'syntax-checking)
+    ;;     (require 'flycheck-ide-backend)
+    ;;     (flycheck-ide-backend-setup)
+    ;;     )
+      ))
+  ;; latex
+  (use-package tex
+    :defer t
+    :config (progn
+              (add-hook 'LaTeX-mode-hook 'custom-latex-mode-hook)
+              (progn
+                (require 'texmathp)
+                (evil-define-key
+                  'visual LaTeX-mode-map (kbd "gw") 'LaTeX-fill-region)
+                (push '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t :help "Run latexmk on file")
+                      TeX-command-list)
+                (setq TeX-auto-save t
+                      TeX-parse-self t
+                      reftex-toc-split-windows-horizontally t
+                      reftex-toc-split-windows-fraction 0.35
+                      font-latex-fontify-script nil
+                      font-latex-fontify-sectioning 'color
+                      TeX-view-program-selection
+                      '((output-pdf "PDF Viewer"))
+                      TeX-view-program-list
+                      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+                (setq-default TeX-master nil TeX-PDF-mode t)
+                (evil-set-initial-state 'reftex-toc-mode 'normal))))
+  ;;========robect
   ;; (global-company-mode)
   (golden-ratio-mode 1)
   ;;(whitespace-mode 1)
@@ -298,11 +415,11 @@ layers configuration. You are free to put any user code."
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
   ;; Indentation
-  (indent-guide-global-mode 1)
+  ;; (indent-guide-global-mode 1)
 
   ;; Show 80-column marker
-  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-  (global-fci-mode 1)
+  ;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  ;; (global-fci-mode 1)
 
   ;; Haskell
    (setq haskell-font-lock-symbols t)
@@ -325,6 +442,51 @@ layers configuration. You are free to put any user code."
 
   )
 
+(defun custom-latex-mode-hook ()
+  (latex-math-mode)
+  (turn-on-smartparens-mode)
+  (setq TeX-command-default "latexmk")
+  (outline-minor-mode)
+  (TeX-source-correlate-mode)
+  (auto-fill-mode)
+  (flyspell-mode 1)
+  )
+
+(defun custom-haskell-mode-hook ()
+  "Execute as haskell-mode-hook."
+  ;; (subword-mode +1)
+  (custom-set-variables
+   '(haskell-process-type 'cabal-repl)
+   '(haskell-process-args-cabal-repl
+     '("--ghc-option=-ferror-spans"))
+   '(haskell-notify-p t)
+   '(haskell-process-suggest-remove-import-lines t)
+   '(haskell-process-auto-import-loaded-modules t)
+   '(haskell-process-use-presentation-mode t)
+   '(haskell-process-reload-with-fbytecode nil)
+   '(haskell-process-path-ghci "ghci-ng")
+   '(haskell-process-args-ghci '("-ferror-spans"))
+   '(haskell-process-args-cabal-repl
+     '("--ghc-option=-ferror-spans"))
+   '(haskell-process-generate-tags nil)
+   '(haskell-process-log t)
+   '(haskell-interactive-mode-eval-pretty nil)
+   '(haskell-interactive-mode-eval-mode 'haskell-mode)
+   '(shm-use-presentation-mode t)
+   '(shm-auto-insert-skeletons t)
+   )
+  (setq haskell-complete-module-preferred
+        '("Data.ByteString"
+          "Data.ByteString.Lazy"
+          "Data.Conduit"
+          "Data.Function"
+          "Data.List"
+          "Data.Map"
+          "Data.Maybe"
+          "Data.Monoid"
+          "Data.Ord"))
+  )
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
@@ -332,50 +494,166 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
  '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#657b83"])
+ '(company-tooltip-align-annotations t)
+ '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
    (quote
-    ("d8f76414f8f2dcb045a37eb155bfaa2e1d17b6573ed43fb1d18b936febc7bbc2" "30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "7f5837a7dbf54c2b7c41d94f5eb1373cf63274847d1971037faa24d7f2231eea" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "34e7163479ef3669943b3b9b1fabe639d6e0a0453e0de79cea2c52cb520d3bc4" default)))
- '(haskell-stylish-on-save t)
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "1c57936ffb459ad3de4f2abbc39ef29bfb109eade28405fa72734df1bc252c13" default)))
+ '(electric-indent-mode nil)
+ '(expand-region-contract-fast-key "V")
+ '(expand-region-reset-fast-key "r")
+ '(fci-rule-color "#073642" t)
+ '(flycheck-disabled-checkers (quote (haskell-ghc javascript-jshint)))
+ '(haskell-interactive-mode-eval-mode (quote haskell-mode))
+ '(haskell-interactive-mode-eval-pretty nil)
+ '(haskell-interactive-popup-error nil t)
+ '(haskell-notify-p t)
+ '(haskell-process-args-cabal-repl (quote ("--ghc-option=-ferror-spans")))
+ '(haskell-process-args-ghci (quote ("-ferror-spans")))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-generate-tags nil)
+ '(haskell-process-log t)
+ '(haskell-process-path-ghci "ghci-ng")
+ '(haskell-process-reload-with-fbytecode nil)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
+ '(haskell-process-use-presentation-mode t)
+ '(haskell-stylish-on-save nil)
+ '(haskell-tags-on-save t)
+ '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
    (--map
     (solarized-color-blend it "#002b36" 0.25)
     (quote
      ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
  '(highlight-symbol-foreground-color "#93a1a1")
+ '(highlight-tail-colors
+   (quote
+    (("#073642" . 0)
+     ("#546E00" . 20)
+     ("#00736F" . 30)
+     ("#00629D" . 50)
+     ("#7B6000" . 60)
+     ("#8B2C02" . 70)
+     ("#93115C" . 85)
+     ("#073642" . 100))))
  '(hl-bg-colors
    (quote
     ("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
  '(hl-fg-colors
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
- '(hl-sexp-background-color "#1c1f26")
+ '(js2-basic-offset 2 t)
+ '(js2-include-node-externs t)
+ '(magit-diff-use-overlays nil)
+ '(magit-use-overlays nil)
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
+ '(ring-bell-function (quote ignore) t)
+ '(safe-local-variable-values
+   (quote
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4))))
+ '(scala-indent:align-forms t)
+ '(scala-indent:align-parameters t)
+ '(scala-indent:default-run-on-strategy scala-indent:operator-strategy)
+ '(shm-auto-insert-skeletons t)
+ '(shm-use-presentation-mode t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
- '(term-default-fg-color "#839496"))
+ '(term-default-fg-color "#839496")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#dc322f")
+     (40 . "#c85d17")
+     (60 . "#be730b")
+     (80 . "#b58900")
+     (100 . "#a58e00")
+     (120 . "#9d9100")
+     (140 . "#959300")
+     (160 . "#8d9600")
+     (180 . "#859900")
+     (200 . "#669b32")
+     (220 . "#579d4c")
+     (240 . "#489e65")
+     (260 . "#399f7e")
+     (280 . "#2aa198")
+     (300 . "#2898af")
+     (320 . "#2793ba")
+     (340 . "#268fc6")
+     (360 . "#268bd2"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (quote
+    (unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;; '(default ((t (:family "Hasklig" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
- ;; '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- ;; '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- )
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
 
- ;; '(ahs-definition-face ((t (:foreground "#d33682" :slant normal :weight bold))))
- ;; '(ahs-face ((t (:foreground "#d33682" :weight bold))))
- ;; '(command-log-key ((t (:foreground "dark cyan"))))
- ;; '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- ;; '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- ;; '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
- ;; '(iedit-occurrence ((t (:inherit cursor))))
- ;; '(js2-external-variable ((t (:foreground "lime green"))))
- ;; '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
+
+
+ ;; '(ansi-color-faces-vector
+ ;;   [default default default italic underline success warning error])
+ ;; '(cua-global-mark-cursor-color "#2aa198")
+ ;; '(cua-normal-cursor-color "#839496")
+ ;; '(cua-overwrite-cursor-color "#b58900")
+ ;; '(cua-read-only-cursor-color "#859900")
+ ;; '(custom-safe-themes
+ ;;   (quote
+ ;;    ("d8f76414f8f2dcb045a37eb155bfaa2e1d17b6573ed43fb1d18b936febc7bbc2" "30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "7f5837a7dbf54c2b7c41d94f5eb1373cf63274847d1971037faa24d7f2231eea" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "34e7163479ef3669943b3b9b1fabe639d6e0a0453e0de79cea2c52cb520d3bc4" default)))
+ ;; '(haskell-stylish-on-save t)
+ ;; '(highlight-symbol-colors
+ ;;   (--map
+ ;;    (solarized-color-blend it "#002b36" 0.25)
+ ;;    (quote
+ ;;     ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
+ ;; '(highlight-symbol-foreground-color "#93a1a1")
+ ;; '(hl-bg-colors
+ ;;   (quote
+ ;;    ("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
+ ;; '(hl-fg-colors
+ ;;   (quote
+ ;;    ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ ;; '(hl-sexp-background-color "#1c1f26")
+ ;; '(pos-tip-background-color "#073642")
+ ;; '(pos-tip-foreground-color "#93a1a1")
+ ;; '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
+ ;; '(term-default-bg-color "#002b36")
+ ;; '(term-default-fg-color "#839496"))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  ;; '(default ((t (:family "Hasklig" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
+;;  ;; '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+;;  ;; '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+
+;;  '(ahs-definition-face ((t (:foreground "#d33682" :slant normal :weight bold))))
+;;  '(ahs-face ((t (:foreground "#d33682" :weight bold))))
+;;  '(command-log-key ((t (:foreground "dark cyan"))))
+;;  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+;;  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+;;  '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
+;;  '(iedit-occurrence ((t (:inherit cursor))))
+;;  '(js2-external-variable ((t (:foreground "lime green"))))
+;;  '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
