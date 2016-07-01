@@ -88,7 +88,8 @@ values."
      python
      yaml
      json
-     quickrun
+     gtags
+     emacs-quickrun
      (haskell :variables
               haskell-enable-ghc-mod-support t
               haskell-enable-ghci-ng-support t
@@ -101,6 +102,7 @@ values."
    dotspacemacs-additional-packages '(auto-complete
                                       company-ghc
                                       ghc
+                                      quickrun
                                       ac-js2
                                       tern-auto-complete)
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -271,7 +273,7 @@ user code."
   ;; Use emacs 24.4 desktop save mode
   ;; Restores buffer and frames on emacs start to the previous configuration
   ;; restores buffer file and emacs configuration 此配置会恢复buffer中所有文件以及配置
-  (desktop-save-mode t)
+  ;; (desktop-save-mode t)
 
   (add-to-list 'exec-path "~/.cabal/bin/")
   (setq-default
@@ -300,6 +302,10 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (global-auto-complete-mode)
+  ;; (global-set-key "L" 'evil-end-of-line)
+  ;;restore keymap 重新定义按键
+  (define-key evil-motion-state-map "L" 'evil-end-of-line)
+  (define-key evil-motion-state-map "H" 'evil-first-non-blank)
 
   ;;========robect
   "This is were you can ultimately override default Spacemacs configuration.
