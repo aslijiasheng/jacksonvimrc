@@ -153,9 +153,9 @@ NeoBundle 'zchee/deoplete-jedi'
 NeoBundle 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 " NeoBundle 'ryanoasis/vim-devicons'
 " NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
-NeoBundle 'joshdick/onedark.vim'
 NeoBundle 'AlexMax/.vim'
 " NeoBundle 'roxma/SimpleAutoComplPop'
+NeoBundle 'aceofall/gtags.vim'
 " Required:
 call neobundle#end()
 

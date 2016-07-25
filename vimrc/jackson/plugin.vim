@@ -917,3 +917,10 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
 " ,<Tab> for regular tab
 inoremap <Leader><Tab> <Space><Space>
+"gtags"
+set cscopetag " 使用 cscope 作为 tags 命令
+set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+" gtags.vim 设置项
+let GtagsCscope_Auto_Load = 1
+let CtagsCscope_Auto_Map = 1
+let GtagsCscope_Quiet = 1

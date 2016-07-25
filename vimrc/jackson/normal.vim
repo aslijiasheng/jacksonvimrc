@@ -9,6 +9,7 @@ filetype plugin indent on " 开启插件
 syntax on " 自动语法高亮
 let mapleader = ","
 nnoremap \ ,
+
 syntax enable
 " set background=dark
 " Color scheme
