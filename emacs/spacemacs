@@ -90,6 +90,7 @@ values."
      json
      gtags
      emacs-quickrun
+     tabbar
      (haskell :variables
               haskell-enable-ghc-mod-support t
               haskell-enable-ghci-ng-support t
@@ -146,11 +147,12 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(solarized-dark
                          spacemacs-light
-                         solarized-dark
+                         spacemacs-dark
                          solarized-light
                          monokai
+                         jbeans
                          material
                          subatomic
                          toxi
@@ -162,8 +164,9 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Hasklig"
-                               :size   11
+   dotspacemacs-default-font '("Source Code Pro"
+                               :height 165
+                               :size   13
                                :weight normal
                                :width  normal
                                :powerline-scale 1.1)
@@ -297,6 +300,7 @@ user code."
   (setq shell-file-name "/bin/zsh")
   )
 
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
@@ -306,6 +310,9 @@ layers configuration. You are free to put any user code."
   ;;restore keymap 重新定义按键
   (define-key evil-motion-state-map "L" 'evil-end-of-line)
   (define-key evil-motion-state-map "H" 'evil-first-non-blank)
+  (define-key evil-motion-state-map "t" 'tabbar-forward-tab)
+  ;; (spacemacs/toggle-indent-guide-globally-on)
+
 
   ;;========robect
   "This is were you can ultimately override default Spacemacs configuration.
@@ -614,52 +621,3 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-
-
-
- ;; '(ansi-color-faces-vector
- ;;   [default default default italic underline success warning error])
- ;; '(cua-global-mark-cursor-color "#2aa198")
- ;; '(cua-normal-cursor-color "#839496")
- ;; '(cua-overwrite-cursor-color "#b58900")
- ;; '(cua-read-only-cursor-color "#859900")
- ;; '(custom-safe-themes
- ;;   (quote
- ;;    ("d8f76414f8f2dcb045a37eb155bfaa2e1d17b6573ed43fb1d18b936febc7bbc2" "30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "7f5837a7dbf54c2b7c41d94f5eb1373cf63274847d1971037faa24d7f2231eea" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "34e7163479ef3669943b3b9b1fabe639d6e0a0453e0de79cea2c52cb520d3bc4" default)))
- ;; '(haskell-stylish-on-save t)
- ;; '(highlight-symbol-colors
- ;;   (--map
- ;;    (solarized-color-blend it "#002b36" 0.25)
- ;;    (quote
- ;;     ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
- ;; '(highlight-symbol-foreground-color "#93a1a1")
- ;; '(hl-bg-colors
- ;;   (quote
- ;;    ("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
- ;; '(hl-fg-colors
- ;;   (quote
- ;;    ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
- ;; '(hl-sexp-background-color "#1c1f26")
- ;; '(pos-tip-background-color "#073642")
- ;; '(pos-tip-foreground-color "#93a1a1")
- ;; '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
- ;; '(term-default-bg-color "#002b36")
- ;; '(term-default-fg-color "#839496"))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  ;; '(default ((t (:family "Hasklig" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
-;;  ;; '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
-;;  ;; '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-
-;;  '(ahs-definition-face ((t (:foreground "#d33682" :slant normal :weight bold))))
-;;  '(ahs-face ((t (:foreground "#d33682" :weight bold))))
-;;  '(command-log-key ((t (:foreground "dark cyan"))))
-;;  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
-;;  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
-;;  '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
-;;  '(iedit-occurrence ((t (:inherit cursor))))
-;;  '(js2-external-variable ((t (:foreground "lime green"))))
-;;  '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
