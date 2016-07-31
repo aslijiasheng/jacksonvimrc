@@ -156,6 +156,8 @@ NeoBundle 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 NeoBundle 'AlexMax/.vim'
 " NeoBundle 'roxma/SimpleAutoComplPop'
 NeoBundle 'aceofall/gtags.vim'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'tpope/vim-fugitive'
 " Required:
 call neobundle#end()
 

@@ -44,3 +44,4 @@ for f in split(glob('~/.vim/jackson/*.vim'), '\n')
 endfor
 " 配色单独处理
 source ~/.vim/jackson/highlight.vim
+source ~/.vim/jackson/gmanual.vim
