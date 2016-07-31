@@ -90,7 +90,7 @@ values."
      json
      gtags
      emacs-quickrun
-     tabbar
+     ;; tabbar
      (haskell :variables
               haskell-enable-ghc-mod-support t
               haskell-enable-ghci-ng-support t
@@ -452,6 +452,7 @@ This function is called at the very end of Spacemacs initialization."
   (add-hook 'after-init-hook #'crosshairs-mode)
   (setq col-highlight-vline-face-flag  t
         col-highlight-face             hl-line-face)
+
 
   )
 
