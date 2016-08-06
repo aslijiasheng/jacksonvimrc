@@ -157,7 +157,9 @@ NeoBundle 'AlexMax/.vim'
 " NeoBundle 'roxma/SimpleAutoComplPop'
 NeoBundle 'aceofall/gtags.vim'
 NeoBundle 'sjl/gundo.vim'
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'digitaltoad/vim-pug'
 " Required:
 call neobundle#end()
 

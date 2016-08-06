@@ -925,10 +925,23 @@ set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
 let GtagsCscope_Auto_Load = 1
 let CtagsCscope_Auto_Map = 1
 let GtagsCscope_Quiet = 1
-nmap <C-c>gt :Gtags <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-c>gr :Gtags -r <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-c>gd :Gtags <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-c>gt :Gtags -r <C-R>=expand("<cword>")<CR><CR>	
 "Gundo"
 nnoremap <Leader>au :GundoToggle<CR>
 "go配置"
 let g:go_def_mode = 'godef'
-
+"vim-javascript"
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+let g:javascript_conceal_function       = "ƒ"
+let g:javascript_conceal_null           = "ø"
+let g:javascript_conceal_this           = "@"
+let g:javascript_conceal_return         = "⇚"
+let g:javascript_conceal_undefined      = "¿"
+let g:javascript_conceal_NaN            = "ℕ"
+let g:javascript_conceal_prototype      = "¶"
+let g:javascript_conceal_static         = "•"
+let g:javascript_conceal_super          = "Ω"
+let g:javascript_conceal_arrow_function = "⇒"
