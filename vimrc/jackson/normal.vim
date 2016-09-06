@@ -54,6 +54,7 @@ set tags=tags; " tags 插件
 "set autochdir " 改变vim tgas 的当前目录
 set backupcopy=yes " 设置备份时的行为为覆盖
 set ignorecase smartcase " 搜索时忽略大小写，但在采用的模式有一个或以上大写字母时仍保持对大小写敏感
+set mouse-=a
 "set nowrapscan " 禁止在搜索到文件两端时重新搜索
 set incsearch " 输入搜索内容时就显示搜索结果
 set hlsearch " 搜索时高亮显示被找到的文本
@@ -77,5 +78,6 @@ set foldenable " 开始折叠
 set foldmethod=syntax " 设置语法折叠
 set foldcolumn=0 " 设置折叠区域的宽度
 set foldlevel=3 " 设置折叠层数为
+set foldlevelstart=99 " 打开文件是默认不折叠代码
 set history=1000
 set clipboard+=unnamed

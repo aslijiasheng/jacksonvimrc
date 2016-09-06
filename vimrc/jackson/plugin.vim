@@ -411,8 +411,8 @@ let g:tagbar_type_go = {
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
 " Disable AutoComplPop.
-" let g:acp_enableAtStartup = 0
-" " Use neocomplcache.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
 " let g:neocomplcache_enable_at_startup = 1
 " " Use smartcase.
 " let g:neocomplcache_enable_smart_case = 1
@@ -658,7 +658,7 @@ if has('nvim')
     nmap <BS> <C-W>h
 endif
 "历史纪录
-" noremap <leader>hs :Unite file_mru -buffer-name=file_mru<CR>
+noremap <leader>fr :Unite file_mru -buffer-name=file_mru<CR>
 "快速移动标签
 function TabQuickMove(tabLabel, ...)
     let bufferTab = a:tabLabel
@@ -887,7 +887,7 @@ let g:deoplete#sources#go#json_directory = '/path/to/data_dir'
 " Use tern_for_vim.
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
-"python"
+" "python"
 set omnifunc=jedi#completions
 let g:jedi#auto_initialization = 1
 let g:jedi#auto_vim_configuration = 0
@@ -926,7 +926,7 @@ let GtagsCscope_Auto_Load = 1
 let CtagsCscope_Auto_Map = 1
 let GtagsCscope_Quiet = 1
 nmap <C-c>gd :Gtags <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-c>gt :Gtags -r <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-c>gdr :Gtags -r <C-R>=expand("<cword>")<CR><CR>	
 "Gundo"
 nnoremap <Leader>au :GundoToggle<CR>
 "go配置"
@@ -935,13 +935,13 @@ let g:go_def_mode = 'godef'
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
-let g:javascript_conceal_function       = "ƒ"
-let g:javascript_conceal_null           = "ø"
-let g:javascript_conceal_this           = "@"
-let g:javascript_conceal_return         = "⇚"
-let g:javascript_conceal_undefined      = "¿"
-let g:javascript_conceal_NaN            = "ℕ"
-let g:javascript_conceal_prototype      = "¶"
-let g:javascript_conceal_static         = "•"
-let g:javascript_conceal_super          = "Ω"
-let g:javascript_conceal_arrow_function = "⇒"
+" let g:javascript_conceal_function       = "ƒ"
+" let g:javascript_conceal_null           = "ø"
+" let g:javascript_conceal_this           = "@"
+" let g:javascript_conceal_return         = "⇚"
+" let g:javascript_conceal_undefined      = "¿"
+" let g:javascript_conceal_NaN            = "ℕ"
+" let g:javascript_conceal_prototype      = "¶"
+" let g:javascript_conceal_static         = "•"
+" let g:javascript_conceal_super          = "Ω"
+" let g:javascript_conceal_arrow_function = "⇒"
