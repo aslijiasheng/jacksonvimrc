@@ -36,7 +36,7 @@ endif
 set helplang=cn
 "
 " 高亮显示当前行配置开始
-"hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+" hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi CursorLine  cterm=underline ctermbg=black ctermfg=none guibg=Grey40 gui=underline guifg=white term=underline
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 " 高亮显示当前行配置结束
@@ -77,7 +77,6 @@ nmap <silent> bO :call append(line('.')-1, '')<CR>k
 "去除文件中^M这个符号
 nnoremap <S-F6> :e ++ff=dos<return>
 "去除搜索高亮显示
-"rm zz
 nmap <Leader>nh :nohl<return>
 "快速打开新窗口
 nmap <Leader>tn :tabnew<return>
@@ -133,15 +132,15 @@ nnoremap <Leader>td :CtrlPBookmarkDir<return> "书签标记的工作目录
 nnoremap <Leader>ta :CtrlPBookmarkDirAdd<return> "添加标记书签工作目录 <F5>刷新 <F7>清除
 "使用方式	ctrl+t	新窗口打开查找的文件
 "Nerdtree 目录导航插件配置开始
-noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.out']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
+" noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+" let NERDTreeShowBookmarks=1
+" let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.out']
+" let NERDTreeChDirMode=0
+" let NERDTreeQuitOnOpen=1
+" let NERDTreeMouseMode=2
+" let NERDTreeShowHidden=1
+" let NERDTreeKeepTreeInNewTab=1
+" let g:nerdtree_tabs_open_on_gui_startup=0
 "Nerdtree 目录导航插件配置结束
 "
 "sessionman 配置开始
@@ -281,7 +280,10 @@ set cursorcolumn
 " autocmd InsertEnter * set cursorcolumn
 " autocmd InsertLeave * set cursorcolumn
 " TagbarToggle 显示函数列表插件
+let g:tagbar_autofocus=1
+let g:tagbar_width = 30
 nmap <Leader>tb :TagbarToggle<CR>
+
 " PHPXdebug调试器
 let g:dbgPavimPort = 9009
 let g:dbgPavimBreakAtEntry = 0
@@ -532,37 +534,37 @@ augroup phpSyntaxOverride
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
 "vimfiler目录
-" let g:vimfiler_as_default_explorer = 1
-" let g:vimfiler_safe_mode_by_default = 0
-" let g:vimfiler_tree_leaf_icon = " "
-" let g:vimfiler_tree_opened_icon = '▾'
-" let g:vimfiler_tree_closed_icon = '▸'
-" let g:vimfiler_file_icon = '-'
-" let g:vimfiler_marked_file_icon = '✓'
-" let g:vimfiler_readonly_file_icon = '✗'
-" let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
-" let g:vimfiler_expand_jump_to_first_child = 0
-" " let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
-" let g:vimfiler_ignore_pattern = '\.pyc\|\~$\|\.swo$\|\.swp$\|\.git\|\.hg\|\.svn\|\.bzr'
-" let g:vimfiler_enable_auto_cd = 1
-" let g:vimfiler_quick_look_command = 'gloobus-preview'
-" nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -toggle -no-quit -auto-cd<CR>
-" nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -no-quit -find<CR>
-" autocmd FileType vimfiler nunmap <buffer> x
-" autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
-" autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
-" autocmd FileType vimfiler nunmap <buffer> l
-" autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
-" autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
-" autocmd FileType vimfiler nunmap <buffer> <C-l>
-" autocmd FileType vimfiler nunmap <buffer> v
-" autocmd FileType vimfiler nmap <buffer> <C-R>  <Plug>(vimfiler_redraw_screen)
-" " autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)<Plug>(vimfiler_edit_file)
-" autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)
-" autocmd FileType vimfiler nmap <buffer> e <Plug>(vimfiler_edit_file)
-" autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
-" \ "\<Plug>(vimfiler_expand_tree)",
-" \ "\<Plug>(vimfiler_edit_file)")
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_tree_leaf_icon = " "
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '✓'
+let g:vimfiler_readonly_file_icon = '✗'
+let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
+let g:vimfiler_expand_jump_to_first_child = 0
+" let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
+let g:vimfiler_ignore_pattern = '\.pyc\|\~$\|\.swo$\|\.swp$\|\.git\|\.hg\|\.svn\|\.bzr'
+let g:vimfiler_enable_auto_cd = 1
+let g:vimfiler_quick_look_command = 'gloobus-preview'
+nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -toggle -no-quit -auto-cd<CR>
+nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -no-quit -find<CR>
+autocmd FileType vimfiler nunmap <buffer> x
+autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
+autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
+autocmd FileType vimfiler nunmap <buffer> l
+autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
+autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
+autocmd FileType vimfiler nunmap <buffer> <C-l>
+autocmd FileType vimfiler nunmap <buffer> v
+autocmd FileType vimfiler nmap <buffer> <C-R>  <Plug>(vimfiler_redraw_screen)
+" autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)<Plug>(vimfiler_edit_file)
+autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)
+autocmd FileType vimfiler nmap <buffer> e <Plug>(vimfiler_edit_file)
+autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
+\ "\<Plug>(vimfiler_expand_tree)",
+\ "\<Plug>(vimfiler_edit_file)")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ARROW KEYS ARE UNACCEPTABLE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -697,7 +699,7 @@ function! Showfunctions()
     execute 'ShowFuncAll' 
     execute 'copen' 
 endfunction
-nnoremap <Leader>tb :call Showfunctions()<CR>
+nnoremap <Leader>tbx :call Showfunctions()<CR>
 "vim-rest
 let b:vrc_header_content_type = 'application/json; charset=utf-8'
 let g:vrc_trigger = '<Leader>rs'
@@ -849,7 +851,6 @@ let g:min_pattern_length = 0
 
 hi Pmenu    gui=NONE    guifg=#c5c8c6 guibg=#373b41
 hi PmenuSel gui=reverse guifg=#c5c8c6 guibg=#373b41
-
 "php"
 
 " let g:deoplete#omni_patterns = {}
@@ -918,30 +919,40 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
 " ,<Tab> for regular tab
 inoremap <Leader><Tab> <Space><Space>
-"gtags"
-set cscopetag " 使用 cscope 作为 tags 命令
-set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+" gtags"
+" set cscopetag 使用 cscope 作为 tags 命令
+set cscopeprg='gtags-cscope' "使用 gtags-cscope 代替 cscope
 " gtags.vim 设置项
 let GtagsCscope_Auto_Load = 1
 let CtagsCscope_Auto_Map = 1
 let GtagsCscope_Quiet = 1
 nmap <C-c>gd :Gtags <C-R>=expand("<cword>")<CR><CR>	
 nmap <C-c>gdr :Gtags -r <C-R>=expand("<cword>")<CR><CR>	
-"Gundo"
+" Gundo"
 nnoremap <Leader>au :GundoToggle<CR>
-"go配置"
+" go配置"
 let g:go_def_mode = 'godef'
-"vim-javascript"
+" vim-javascript"
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
-" let g:javascript_conceal_function       = "ƒ"
-" let g:javascript_conceal_null           = "ø"
-" let g:javascript_conceal_this           = "@"
-" let g:javascript_conceal_return         = "⇚"
-" let g:javascript_conceal_undefined      = "¿"
-" let g:javascript_conceal_NaN            = "ℕ"
-" let g:javascript_conceal_prototype      = "¶"
-" let g:javascript_conceal_static         = "•"
-" let g:javascript_conceal_super          = "Ω"
-" let g:javascript_conceal_arrow_function = "⇒"
+let g:javascript_conceal_function       = "ƒ"
+let g:javascript_conceal_null           = "ø"
+let g:javascript_conceal_this           = "@"
+let g:javascript_conceal_return         = "⇚"
+let g:javascript_conceal_undefined      = "¿"
+let g:javascript_conceal_NaN            = "ℕ"
+let g:javascript_conceal_prototype      = "¶"
+let g:javascript_conceal_static         = "•"
+let g:javascript_conceal_super          = "Ω"
+let g:javascript_conceal_arrow_function = "⇒"
+" ---
+" Post Load Fixes
+" ---
+function CorrectColorScheme()
+  " Annoying tilde should be hidden
+  highlight EndOfBuffer ctermfg=0 guifg=#282828
+
+  highlight VertSplit ctermbg=NONE guifg=#404040 guibg=NONE
+endfunction
+autocmd VimEnter * call CorrectColorScheme()
