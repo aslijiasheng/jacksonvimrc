@@ -19,7 +19,7 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 "代码注释插件
 NeoBundle 'scrooloose/nerdcommenter'
 "目录文件导航
-" NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 "Vim 中文Help Doc
 NeoBundle 'asins/vimcdoc'
 "Markdown
@@ -95,8 +95,6 @@ NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
 NeoBundle 'fatih/vim-go'
 NeoBundle 'wincent/Command-T'
 NeoBundle 'joonty/vim-phpqa'
-NeoBundle 'Shougo/vimproc.vim'
-" NeoBundle 'm2mdas/phpcomplete-extended'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'powerline/fonts'
 "快速运行工具
@@ -109,10 +107,11 @@ NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'kshenoy/vim-signature'
 "tab
 NeoBundle 'ervandew/supertab'
-"phpManual
-NeoBundle 'alvan/vim-php-manual'
 "phpcomplete
 NeoBundle 'shawncplus/phpcomplete.vim'
+" NeoBundle 'm2mdas/phpcomplete-extended'
+"phpManual
+NeoBundle 'alvan/vim-php-manual'
 "php语法高亮
 NeoBundle 'StanAngeloff/php.vim'
 "强大的文件浏览器
@@ -160,6 +159,12 @@ NeoBundle 'sjl/gundo.vim'
 " NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'pangloss/vim-javascript'
 " NeoBundle 'digitaltoad/vim-pug'
+NeoBundle 'Shougo/denite.nvim'
+NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+NeoBundle 'vim-scripts/cmdalias.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'vimwiki/vimwiki'
+NeoBundle 't9md/vim-choosewin'
 " Required:
 call neobundle#end()
 

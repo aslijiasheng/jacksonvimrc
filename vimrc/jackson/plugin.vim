@@ -132,15 +132,15 @@ nnoremap <Leader>td :CtrlPBookmarkDir<return> "书签标记的工作目录
 nnoremap <Leader>ta :CtrlPBookmarkDirAdd<return> "添加标记书签工作目录 <F5>刷新 <F7>清除
 "使用方式	ctrl+t	新窗口打开查找的文件
 "Nerdtree 目录导航插件配置开始
-" noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-" let NERDTreeShowBookmarks=1
-" let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.out']
-" let NERDTreeChDirMode=0
-" let NERDTreeQuitOnOpen=1
-" let NERDTreeMouseMode=2
-" let NERDTreeShowHidden=1
-" let NERDTreeKeepTreeInNewTab=1
-" let g:nerdtree_tabs_open_on_gui_startup=0
+noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.out']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
 "Nerdtree 目录导航插件配置结束
 "
 "sessionman 配置开始
@@ -302,7 +302,7 @@ let g:phpqa_codecoverage_autorun = 1
 "状态栏增强"
 " let g:airline_theme='light'
 " airline config
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=0  " buffers at the top as tabs
 let g:airline#extensions#tabline#show_tabs=0
 let g:airline#extensions#tabline#show_tab_type=1
@@ -411,80 +411,8 @@ let g:tagbar_type_go = {
             \ }
 "自动补全
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+" autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 set completeopt=longest,menuone
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-" let g:neocomplcache_enable_at_startup = 1
-" " Use smartcase.
-" let g:neocomplcache_enable_smart_case = 1
-" " Set minimum syntax keyword length.
-" let g:neocomplcache_min_syntax_length = 3
-" let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" " Define dictionary.
-" let g:neocomplcache_dictionary_filetype_lists = {
-            " \ 'default' : ''
-            " \ }
-
-" " Plugin key-mappings.
-" inoremap <expr><C-g>     neocomplcache#undo_completion()
-" inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" " Recommended key-mappings.
-" " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-    " return neocomplcache#smart_close_popup() . "\<CR>"
-" endfunction
-" " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  neocomplcache#close_popup()
-" inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-" " Close popup by <Space>.
-" "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
-
-" " For cursor moving in insert mode(Not recommended)
-" "inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-" "inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-" "inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-" "inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-" " Or set this.
-" "let g:neocomplcache_enable_cursor_hold_i = 1
-" " Or set this.
-" "let g:neocomplcache_enable_insert_char_pre = 1
-
-" " AutoComplPop like behavior.
-" "let g:neocomplcache_enable_auto_select = 1
-
-" " Shell like behavior(not recommended).
-" "set completeopt+=longest
-" "let g:neocomplcache_enable_auto_select = 1
-" "let g:neocomplcache_disable_auto_complete = 1
-" "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" " Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" " Enable heavy omni completion.
-" if !exists('g:neocomplcache_force_omni_patterns')
-  " let g:neocomplcache_force_omni_patterns = {}
-" endif
-" " let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-" " let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-" " let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" " For perlomni.vim setting.
-" " https://github.com/c9s/perlomni.vim
-" let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "phpmanualphp手册
 let g:php_manual_online_search_shortcut = '<leader>b'
 "ranger
@@ -533,38 +461,6 @@ augroup phpSyntaxOverride
     autocmd!
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
-"vimfiler目录
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default = 0
-let g:vimfiler_tree_leaf_icon = " "
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_file_icon = '-'
-let g:vimfiler_marked_file_icon = '✓'
-let g:vimfiler_readonly_file_icon = '✗'
-let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
-let g:vimfiler_expand_jump_to_first_child = 0
-" let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
-let g:vimfiler_ignore_pattern = '\.pyc\|\~$\|\.swo$\|\.swp$\|\.git\|\.hg\|\.svn\|\.bzr'
-let g:vimfiler_enable_auto_cd = 1
-let g:vimfiler_quick_look_command = 'gloobus-preview'
-nnoremap <Leader>nt :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -toggle -no-quit -auto-cd<CR>
-nnoremap <Leader>jf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=45 -no-quit -find<CR>
-autocmd FileType vimfiler nunmap <buffer> x
-autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
-autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
-autocmd FileType vimfiler nunmap <buffer> l
-autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
-autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
-autocmd FileType vimfiler nunmap <buffer> <C-l>
-autocmd FileType vimfiler nunmap <buffer> v
-autocmd FileType vimfiler nmap <buffer> <C-R>  <Plug>(vimfiler_redraw_screen)
-" autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)<Plug>(vimfiler_edit_file)
-autocmd FileType vimfiler nmap <buffer> f <Plug>(vimfiler_new_file)
-autocmd FileType vimfiler nmap <buffer> e <Plug>(vimfiler_edit_file)
-autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
-\ "\<Plug>(vimfiler_expand_tree)",
-\ "\<Plug>(vimfiler_edit_file)")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ARROW KEYS ARE UNACCEPTABLE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -678,20 +574,6 @@ let g:junkfile#directory = '~/.memo'
 nnoremap <silent> ,e  :<C-u>Unite junkfile/new junkfile -start-insert<CR>
 nnoremap <silent> ,l  :<C-u>Unite junkfile<CR>
 nnoremap <silent> ,ju  :jumps<CR>
-"webdevicons图标
-" if exists("g:loaded_webdevicons")
-    " call webdevicons#refresh()
-" endif
-" let g:airline_powerline_fonts = 1
-" let g:webdevicons_enable = 1
-" let g:webdevicons_enable_nerdtree = 0
-" let g:webdevicons_enable_unite = 0
-" let g:webdevicons_enable_vimfiler = 0
-" let g:webdevicons_enable_airline_tabline = 1
-" let g:webdevicons_enable_airline_statusline = 1
-" let g:webdevicons_enable_ctrlp = 0
-" let g:webdevicons_enable_flagship_statusline = 0
-" let g:WebDevIconsUnicodeDecorateFileNodes = 0
 "回到上次光标位置
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\" norm zz")|else|exe "norm $ norm zz"|endif|endif 
 "showfunction
@@ -844,18 +726,14 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 "deoplete"
 set completeopt+=noinsert,noselect
 set completeopt-=preview
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_ignore_case = 'ignorecase'
 let g:min_pattern_length = 0
-
 hi Pmenu    gui=NONE    guifg=#c5c8c6 guibg=#373b41
 hi PmenuSel gui=reverse guifg=#c5c8c6 guibg=#373b41
 "php"
-
-" let g:deoplete#omni_patterns = {}
-" let g:deoplete#omni_patterns.php =
-" \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 " Define keyword
 if !exists('g:deoplete#keyword_patterns')
     let g:deoplete#keyword_patterns = {}
@@ -864,21 +742,21 @@ let g:deoplete#keyword_patterns.default = '[a-zA-Z_]\w{2,}?'
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.html = '<[^>]*'
-let g:deoplete#omni#input_patterns.xml  = '<[^>]*'
-let g:deoplete#omni#input_patterns.md   = '<[^>]*'
-let g:deoplete#omni#input_patterns.css   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.scss   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.sass   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-let g:deoplete#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
+let g:deoplete#omni_input_patterns = {}
+let g:deoplete#omni_input_patterns.html = '<[^>]*'
+let g:deoplete#omni_input_patterns.xml  = '<[^>]*'
+let g:deoplete#omni_input_patterns.md   = '<[^>]*'
+let g:deoplete#omni_input_patterns.css   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni_input_patterns.scss   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni_input_patterns.sass   = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+let g:deoplete#omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:deoplete#omni_input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
+let g:deoplete#omni_input_patterns.php =
+            \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
-" let g:deoplete#omni#input_patterns.javascript = '[^. \t]\.\%(\h\w*\)\?'
-" let g:deoplete#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
-" let g:deoplete#omni#input_patterns.ruby = ['[^. *\t]\.\w*', '\h\w*::']
-let g:deoplete#omni#input_patterns.php =
-            \ '\w+|[^. \t]->\w*\|\w+::\w*'
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.php =
+            \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
 "go"
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
@@ -936,16 +814,6 @@ let g:go_def_mode = 'godef'
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
-let g:javascript_conceal_function       = "ƒ"
-let g:javascript_conceal_null           = "ø"
-let g:javascript_conceal_this           = "@"
-let g:javascript_conceal_return         = "⇚"
-let g:javascript_conceal_undefined      = "¿"
-let g:javascript_conceal_NaN            = "ℕ"
-let g:javascript_conceal_prototype      = "¶"
-let g:javascript_conceal_static         = "•"
-let g:javascript_conceal_super          = "Ω"
-let g:javascript_conceal_arrow_function = "⇒"
 " ---
 " Post Load Fixes
 " ---
@@ -956,3 +824,25 @@ function CorrectColorScheme()
   highlight VertSplit ctermbg=NONE guifg=#404040 guibg=NONE
 endfunction
 autocmd VimEnter * call CorrectColorScheme()
+"xml格式化
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+"supertab
+let g:SuperTabMappingForward = '<s-tab>'
+let g:SuperTabMappingBackward = '<c-tab>'
+"fzf plugin
+nnoremap <Leader>fz :FZF<CR>
+" This is my setting.
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+" If it looks like URI, Open selected URI.
+" Otherwise, Search selected word.
+vnoremap gob :OpenBrowser http://www.baidu.com/s?wd=<C-R>=expand("<cword>")<cr><cr>
+nnoremap gob :OpenBrowser http://www.baidu.com/s?wd=<C-R>=expand("<cword>")<cr><cr>
+vnoremap gog :OpenBrowser http://www.google.com/?#newwindow=1&q=<C-R>=expand("<cword>")<cr><cr>
+nnoremap gog :OpenBrowser http://www.google.com/?#newwindow=1&q=<C-R>=expand("<cword>")<cr><cr>
+vnoremap goi :OpenBrowserSmartSearch http://www.iciba.com/<C-R>=expand("<cword>")<cr><cr>
+nnoremap goi :OpenBrowserSmartSearch http://www.iciba.com/<C-R>=expand("<cword>")<cr><cr>
+" In command-line
+" invoke with '-'
+nmap  -  <Plug>(choosewin)
+" if you want to use overlay feature
+let g:choosewin_overlay_enable = 1
