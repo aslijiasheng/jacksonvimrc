@@ -449,7 +449,7 @@ function! RangeChooser()
     redraw!
 endfunction
 command! -bar RangerChooser call RangeChooser()
-nnoremap <leader>r :<C-U>RangerChooser<CR>
+nnoremap <leader>ra :<C-U>RangerChooser<CR>
 " Put at the very end of your .vimrc file.
 "php语法高亮
 function! PhpSyntaxOverride()
@@ -575,7 +575,7 @@ nnoremap <silent> ,e  :<C-u>Unite junkfile/new junkfile -start-insert<CR>
 nnoremap <silent> ,l  :<C-u>Unite junkfile<CR>
 nnoremap <silent> ,ju  :jumps<CR>
 "回到上次光标位置
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\" norm zz")|else|exe "norm $ norm zz"|endif|endif 
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif 
 "showfunction
 function! Showfunctions()
     execute 'ShowFuncAll' 
@@ -755,8 +755,8 @@ let g:deoplete#omni_input_patterns.php =
             \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
 let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.php =
-            \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+" let g:deoplete#omni_patterns.php =
+            " \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
 "go"
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
@@ -769,12 +769,12 @@ let g:tern#arguments = ["--persistent"]
 " "python"
 set omnifunc=jedi#completions
 let g:jedi#auto_initialization = 1
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_select_first = 0
-let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 1
+let g:jedi#popup_select_first = 1
+let g:jedi#completions_enabled = 1
 let g:jedi#force_py_version = 3
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#show_call_signatures = 0
+let g:jedi#smart_auto_mappings = 1
+let g:jedi#show_call_signatures = 1
 let g:jedi#max_doc_height = 100
 " omnifuncs
 augroup omnifuncs
@@ -846,3 +846,17 @@ nnoremap goi :OpenBrowserSmartSearch http://www.iciba.com/<C-R>=expand("<cword>"
 nmap  -  <Plug>(choosewin)
 " if you want to use overlay feature
 let g:choosewin_overlay_enable = 1
+"webdevicons图标
+if exists("g:loaded_webdevicons")
+	call webdevicons#refresh()
+endif
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:webdevicons_enable_unite = 1
+let g:webdevicons_enable_vimfiler = 0
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 0
+let g:webdevicons_enable_ctrlp = 1
+let g:webdevicons_enable_flagship_statusline = 1
+let g:WebDevIconsUnicodeDecorateFileNodes = 1

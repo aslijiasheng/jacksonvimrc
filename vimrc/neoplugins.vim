@@ -133,6 +133,7 @@ NeoBundle 'tpope/vim-dispatch'
 "主题
 NeoBundle 'tpope/vim-vividchalk'
 NeoBundle 'ahawkins/vim-candy'
+NeoBundle 'whatyouhide/vim-gotham'
 "创建备忘录插件
 NeoBundle 'Shougo/junkfile.vim'
 "showfunctionall
@@ -150,7 +151,7 @@ NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'carlitux/deoplete-ternjs', { 'build': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
 NeoBundle 'zchee/deoplete-jedi'
 NeoBundle 'zchee/deoplete-go', {'build': {'unix': 'make'}}
-" NeoBundle 'ryanoasis/vim-devicons'
+NeoBundle 'ryanoasis/vim-devicons'
 " NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 NeoBundle 'AlexMax/.vim'
 " NeoBundle 'roxma/SimpleAutoComplPop'
