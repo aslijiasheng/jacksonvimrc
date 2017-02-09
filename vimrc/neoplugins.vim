@@ -147,11 +147,12 @@ NeoBundle 'vim-scripts/genutils'
 NeoBundle 'klen/python-mode'
 NeoBundle 'stephpy/vim-php-cs-fixer'
 NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'padawan-php/deoplete-padawan'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'carlitux/deoplete-ternjs', { 'build': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
 NeoBundle 'zchee/deoplete-jedi'
 NeoBundle 'zchee/deoplete-go', {'build': {'unix': 'make'}}
-NeoBundle 'ryanoasis/vim-devicons'
+" NeoBundle 'ryanoasis/vim-devicons'
 " NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 NeoBundle 'AlexMax/.vim'
 " NeoBundle 'roxma/SimpleAutoComplPop'

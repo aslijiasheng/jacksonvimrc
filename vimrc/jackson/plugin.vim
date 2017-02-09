@@ -134,7 +134,7 @@ nnoremap <Leader>ta :CtrlPBookmarkDirAdd<return> "添加标记书签工作目录
 "Nerdtree 目录导航插件配置开始
 noremap <leader>nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.out']
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.out', '\.ide']
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeMouseMode=2
@@ -740,8 +740,9 @@ if !exists('g:deoplete#keyword_patterns')
 endif
 let g:deoplete#keyword_patterns.default = '[a-zA-Z_]\w{2,}?'
 let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#delimiters = ['/', '.', '::', ':', '#', '->']
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = []
+let g:deoplete#sources._ = ['omni', 'buffer', 'member', 'tag', 'ultisnips', 'file']
 let g:deoplete#omni_input_patterns = {}
 let g:deoplete#omni_input_patterns.html = '<[^>]*'
 let g:deoplete#omni_input_patterns.xml  = '<[^>]*'
@@ -755,9 +756,13 @@ let g:deoplete#omni_input_patterns.php =
             \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
 let g:deoplete#omni_patterns = {}
-" let g:deoplete#omni_patterns.php =
-            " \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-
+let g:deoplete#omni_patterns.php =
+            \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+" let g:deoplete#sources#padawan#server_autostart = 1
+" let g:deoplete#sources#padawan#log_file = '/tmp/log/padawan-server.log'
+" command! StartPadawan call deoplete#sources#padawan#StartServer()
+" command! StopPadawan call deoplete#sources#padawan#StopServer()
+" command! RestartPadawan call deoplete#sources#padawan#RestartServer()
 "go"
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
@@ -846,17 +851,4 @@ nnoremap goi :OpenBrowserSmartSearch http://www.iciba.com/<C-R>=expand("<cword>"
 nmap  -  <Plug>(choosewin)
 " if you want to use overlay feature
 let g:choosewin_overlay_enable = 1
-"webdevicons图标
-if exists("g:loaded_webdevicons")
-	call webdevicons#refresh()
-endif
-let g:webdevicons_enable = 1
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:webdevicons_enable_unite = 1
-let g:webdevicons_enable_vimfiler = 0
-let g:webdevicons_enable_airline_tabline = 1
-let g:webdevicons_enable_airline_statusline = 0
-let g:webdevicons_enable_ctrlp = 1
-let g:webdevicons_enable_flagship_statusline = 1
-let g:WebDevIconsUnicodeDecorateFileNodes = 1
+let g:syntastic_php_checkers = ['php']
